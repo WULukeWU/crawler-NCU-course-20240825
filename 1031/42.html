@@ -1,0 +1,2649 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>New Course Schedule Planning System</title>
+
+<script type="text/javascript">
+	var	baseDir = '/Course';
+	var basedir = baseDir;
+	var language = '1';
+	var currentStage = 'PRINT_COURSE_TERMINATION';
+</script>
+
+<link rel="stylesheet" href="/Course/css/course.css" type="text/css" />
+<script type="text/javascript" src="/Course/js/tools.js"></script>
+
+<!--jQuery Requires -->  
+<script type="text/javascript" src="/Course/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/Course/js/jquery-ui-1.8.custom.min.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.metadata.js"></script>
+
+<!--CourseList-->
+<script type="text/javascript" src="/Course/js/jquery.tablednd_0_5.js"></script>
+<script type="text/javascript" src="/Course/js/jquery-impromptu.3.0.min.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.client.js"></script>
+
+<!-- <script type="text/javascript" src="/Course/js/list.js"></script> -->
+
+<!-- mbMenu Requires -->  
+<script type="text/javascript" src="/Course/js/mbMenu.js"></script>
+<script type="text/javascript" src="/Course/js/styleswitch.js"></script>
+<link rel="stylesheet" type="text/css" href="/Course/css/menu.css" title="styles1"  media="screen" />
+<!--<script type="text/javascript" src="/Course/js/menu_core.js"></script>-->
+
+	
+	
+		<script type="text/javascript" src="/Course/main/support/menu_core_en.js"></script>
+	
+
+
+<script type="text/javascript" src="/Course/js/windowOpen.js"></script>
+<!-- Dialog Requires -->
+<!--<link rel="stylesheet" type="text/css" href="/Course/css/dialog.css" title="styles1"  media="screen" />-->
+<!--<link type="text/css" href="/Course/css/jquery-ui.css" rel="stylesheet" />-->
+<!--<script type="text/javascript" src="/Course/js/dialog_core.js"></script>-->
+
+<!-- Select -->
+<script type="text/javascript" src="/Course/js/jquery.delegate.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.bgiframe.js"></script>
+<!--script type="text/javascript" src="/Course/js/jquery.dimensions.js"></script-->
+<script type="text/javascript" src="/Course/js/chili-1.7.pack.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.tooltip.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.floatinglayer.js"></script>
+<!--<script type="text/javascript" src="/Course/js/select.js"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="/Course/css/select.css" title="styles1"  media="screen" />-->
+<!--script type="text/javascript" src="/Course/js/jqcontextmenu.js"></script-->
+
+<!-- DWR Requires -->
+<!--<script type="text/javascript" src="/Course/include/js/prototype.js"></script>-->
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/Course/css/autocomplete.css"/>
+<script type='text/javascript' src='/Course/ajax/interface/CourseSearchService.js'></script>
+<script type="text/javascript" src="/Course/js/autocompleteByKeyword.js"></script>
+<script type='text/javascript' src='/Course/ajax/engine.js'></script>
+<script type='text/javascript' src='/Course/ajax/util.js'></script>
+<script type="text/javascript" src="/Course/js/windowOpen.js"></script>
+<script type="text/javascript" src="/Course/js/deptSearch.js"></script>
+
+
+
+<script type=text/javascript>
+jQuery(function() {  
+	checkYear();
+});  
+
+function checkYear(){
+	var year = document.getElementById("year").value;
+	var fall_spring = document.getElementById("fall_spring").value;
+	var semester = document.getElementById("year").value + document.getElementById("fall_spring").value;
+
+	if(year == 'all')
+	{
+		jQuery("#college_department").hide();
+		jQuery("#time").hide();
+		jQuery("#fall_spring").attr("disabled", true);
+	}
+	else if(semester == '1032'){
+		jQuery("#college_department").show();
+		jQuery("#time").show();
+		jQuery("#fall_spring").attr("disabled", false);
+	}
+	else{
+		jQuery("#college_department").show();
+		jQuery("#time").hide();
+		jQuery("#fall_spring").attr("disabled", false);
+	}
+
+	//改變單位系所選單
+	changeSelectDept(semester, '');
+}
+
+function updateList(obj, div) {
+	var search = obj.value;
+	var year = document.getElementById("year").value;
+	var fall_spring = document.getElementById("fall_spring").value;
+	var selectDept = document.getElementById("selectDept").value;
+
+	if(year != "" && fall_spring != "" && search != "")
+	{	
+		var semester = document.getElementById("year").value + document.getElementById("fall_spring").value;
+	
+		var nowSemester = '1032';			
+
+		if(year == 'all')
+		{
+			//若為全部年度，則不推薦關鍵字
+		}
+		else if(semester == nowSemester)	//若為當學年度
+		{
+			CourseSearchService.findCoursesByName(search, 50, {
+		        callback:function(list){
+					setData(list, div, obj);
+		        }
+			});
+		}
+		else
+		{
+			CourseSearchService.findCoursesByNameFromPastSemester(search, semester, 50, selectDept, {
+		        callback:function(list){
+					setData(list, div, obj);
+	       	 	}
+			});
+		}			
+	}
+	else
+	{
+		resetData(div);
+	}	
+}
+
+
+function checkData(){
+	var keyword = document.getElementById("keyword").value;
+	var week = document.getElementById("week").value;
+	var day = document.getElementById("day").value;
+
+    if(keyword=="" && week=="" && day==""){
+         alert("關鍵字、星期、節次至少選擇一項");
+    }
+}
+
+</script>
+
+</head>
+
+<div id="container">
+  <div id="header">
+<!--	<div id="banner"></div>-->
+
+
+	
+		<div id="banner_left"></div>
+	
+	
+
+
+	
+		<!--div class="intro_banner"><a class="intro" href="course.html">回首頁</a>&nbsp;|&nbsp;<a class="intro" href="sitemap.html">網站地圖</a>&nbsp;|&nbsp;聯絡我們&nbsp;|&nbsp;登入</div-->
+	<div id="banner_right">
+		
+
+
+<span class="intro_banner">
+
+	
+
+	
+
+	
+
+	
+
+	
+	<a class="intro" href="/Course/main/lang">中文</a>&nbsp;|
+	
+
+	
+
+	
+	<a class="intro" href="/Course/main/sitemap">Site Map</a>&nbsp;|
+	
+
+	
+	<a class="intro" href="/Course/main/about">About</a>&nbsp;|
+	
+
+	
+
+	
+	<a class="intro" href="/Course/main/manual">Manual</a>&nbsp;|
+	
+
+<!---->
+
+
+</span><br/>
+<span class="intro_banner">
+1032 | 
+
+Online user: 52&nbsp;|
+</span><br />
+<span class="intro_banner">
+[ Print Course Termination Online ]
+</span>
+
+	</div>
+    
+
+<div id="menu">
+	<table class="rootVoices" cellspacing='0' cellpadding='0' border='0'><tr>
+			
+				
+					
+						
+						
+						
+							<td class="rootVoice {menu: 'menu_news'}">News and Updates</td>
+						
+					
+				
+			
+				
+					
+						
+						
+						
+							<td class="rootVoice {menu: 'menu_query'}">Search for Courses</td>
+						
+					
+				
+			
+				
+					
+						
+							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">Login System</td>
+						
+						
+						
+					
+				
+			
+				
+			
+<!--			<td class="rootVoice {menu: 'empty'}" onClick="document.location='http://tw.yahoo.com';">開啟連結</td>-->
+<!--			<td class="rootVoice {menu: 'menuNews'}">最新資訊</td>-->
+<!--			<td class="rootVoice {menu: 'menuStdExplanation'}" >選課相關說明</td>-->
+<!--			<td class="rootVoice {menu: 'menuStdSign'}" >選課作業</td>-->
+<!--			<td class="rootVoice {menu: 'menuStdPersonal'}" >個人功能表</td>-->
+<!--			<td class="rootVoice {menu: 'menuSystem'}" >系統</td>-->
+	</tr></table>
+</div>
+  </div>
+  <div id="content">
+    
+
+<div id="bread">
+<img src="/Course/image/breadcrumb_icon.gif" />
+<a href="/Course">Home</a> &gt;
+<a href="/Course/main">New Course Schedule Planning System</a>
+
+
+
+	
+	&gt; <a href="/Course/main/query">Search for Courses</a>
+
+	
+	&gt; <a href="/Course/main/query/byKeywords">Search according to Keyword/Time/Departments</a>
+
+</div>
+    <div id="content_body">
+       
+<!-- 如有選課問題，請看相關資訊 -->
+<font color=red>Any problems related to course registration, please refer to News and Updates</font><BR/>
+
+<h1 align="center">Search according to Keyword / Time / Departments</h1><br />
+
+<div align="center"><b><font color='red'>System Maintenance：07:00 ~ 09:00 everyday (unavailable for course selection during this time)</font></b></div>
+
+<br>
+<p></p>
+<form name="myform" action="/Course/main/query/byKeywords" method="post" >
+<table cellspacing="0" cellpadding="1" class="search_table" width="700px" align="center">
+    <tr>
+			<th colspan="4"><strong>Select Academic Year and Semester</strong></th>
+  </tr>
+		<tr>
+			<td class="do">
+			Academic Year
+			</td>
+			<td>
+			<select id="year" name="year" onChange="checkYear()">
+				<option value="all">Select</option>
+				
+					
+				   <option selected VALUE='103'>103</option>
+				
+					
+				   <option  VALUE='102'>102</option>
+				
+					
+				   <option  VALUE='101'>101</option>
+				
+					
+				   <option  VALUE='100'>100</option>
+				
+					
+				   <option  VALUE='099'>99</option>
+				
+					
+				   <option  VALUE='098'>98</option>
+				
+					
+				   <option  VALUE='097'>97</option>
+				
+					
+				   <option  VALUE='096'>96</option>
+				
+					
+				   <option  VALUE='095'>95</option>
+				
+					
+				   <option  VALUE='094'>94</option>
+				
+					
+				   <option  VALUE='093'>93</option>
+				
+					
+				   <option  VALUE='092'>92</option>
+				
+					
+				   <option  VALUE='091'>91</option>
+				
+					
+				   <option  VALUE='090'>90</option>
+				
+					
+				   <option  VALUE='089'>89</option>
+				
+					
+				   <option  VALUE='088'>88</option>
+				
+					
+				   <option  VALUE='087'>87</option>
+				
+					
+				   <option  VALUE='086'>86</option>
+				
+					
+				   <option  VALUE='085'>85</option>
+				
+			</select>
+          </td>
+          <td class="do">semester
+          </td>
+          <td>
+			<select id="fall_spring" NAME="fall_spring" onChange="checkYear()">
+			<option selected VALUE="1">fall</option>
+			<option  VALUE="2">spring</option>
+
+			</select>
+            </td>
+		</tr>
+<tbody id="college_department">
+<tr>
+	<th colspan="4">Inquiry by Departments</th>
+</tr>
+<tr>
+	<td class="do">College / Department</td><td colspan="3">
+	<select id="selectDept" name="selectDept">
+
+	</select>
+	</td>
+</tr>
+</tbody>
+<tr>
+	<th colspan="4">Search with Keyword </th>
+</tr>
+<tr>
+	<td class="do">Course Name/Instructor's Name/Course Code/Serial Number Keyword</td>
+	<td colspan="3"><input type="text" size="50" id="keyword" name="keyword" value="" autocomplete="off" onKeyUp="updateList(this,'wordsList');"/>
+	    <div id="wordsList" class="auto_complete1" ></div>
+    </td>
+</tr>
+  
+<tbody id="time">
+<tr>
+	<th colspan="4">Search Course According to Time Slot</th>
+</tr>
+<tr>
+	<td class="do">Week</td>
+	<td><select name= "week" id="week">
+	<option value="">Select</option>
+    
+          <option  value="0">Sun</option>
+    
+          <option  value="1">Mon</option>
+    
+          <option  value="2">Tue</option>
+    
+          <option  value="3">Wed</option>
+    
+          <option  value="4">Thu</option>
+    
+          <option  value="5">Fri</option>
+    
+          <option  value="6">Sat</option>
+    
+    </select>
+	</td>
+	<td class="do">Class Section</td>
+	<td><select name= "day" id="day">
+		<option value="">Select</option>
+		  
+		   <option  value="1">1</option>
+		  
+		   <option  value="2">2</option>
+		  
+		   <option  value="3">3</option>
+		  
+		   <option  value="4">4</option>
+		  
+		   <option  value="Z">Z</option>
+		  
+		   <option  value="5">5</option>
+		  
+		   <option  value="6">6</option>
+		  
+		   <option  value="7">7</option>
+		  
+		   <option  value="8">8</option>
+		  
+		   <option  value="9">9</option>
+		  
+		   <option  value="A">A</option>
+		  
+		   <option  value="B">B</option>
+		  
+		   <option  value="C">C</option>
+		  
+		   <option  value="D">D</option>
+		  
+		   <option  value="E">E</option>
+		  
+		   <option  value="F">F</option>
+		
+		</select>
+	</td>
+</tr>
+</tbody>
+<tr>
+	<td colspan="4" align="right">
+      <input  name="query" type="submit" value="Search" />
+    </td>
+</tr>
+</table>
+</form>
+<br />
+
+
+
+	
+
+
+
+
+
+<div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=41&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=38&amp;selectDept=&amp;week=1" title="Go to page 38">38</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=39&amp;selectDept=&amp;week=1" title="Go to page 39">39</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=40&amp;selectDept=&amp;week=1" title="Go to page 40">40</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=41&amp;selectDept=&amp;week=1" title="Go to page 41">41</a>, <strong>42</strong>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=43&amp;selectDept=&amp;week=1" title="Go to page 43">43</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=44&amp;selectDept=&amp;week=1" title="Go to page 44">44</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=45&amp;selectDept=&amp;week=1" title="Go to page 45">45</a><a href=/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=43&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+<table id="item" cellpadding="1" class="t6" cellspacing="0">
+<thead>
+<tr>
+<th>Serial Number<br />Course Code - Class</th>
+<th>Course Name/Remark</th>
+<th>Instructor</th>
+<th>Credit</th>
+<th>Time/Building and Room Number</th>
+<th>Required or Elective</th>
+<th>Whole Year or Semester</th>
+<th>Maximum Number</th>
+<th>Assignment Criteria</th>
+<th>Syllabus</th></tr></thead>
+<tbody>
+<tr class="odd">
+<td>62080<br />GP7015-*</td>
+<td>Advanced Well Logging 
+    
+    <br />
+		<span class="engclass">高等井測學</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, How-Wei <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon56/S-218<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=62080&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=62080&outline=62080&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63001<br />SS5005-*</td>
+<td>Research Methodology
+    
+    <br />
+		<span class="engclass">研究方法</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Lin, Tang-Huang <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Tue56/R3-110<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63001&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63001&outline=63001&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63002<br />SS5008-*</td>
+<td>Advanced Computer ProgrammingⅡ
+    <span class="notice">[Course Cancelled]</span>
+    <br />
+		<span class="engclass">高等程式設計Ⅱ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Shue, Jih-Hong <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed678/S4-811<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63002&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63002&outline=63002&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63003<br />SS6001-A</td>
+<td>Seminar Ⅰ
+    
+    <br />
+		<span class="engclass">書報討論 Ⅰ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Ming-Quey <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu34/S4-811<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Full
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63003&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63003&outline=63003&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63004<br />SS6001-B</td>
+<td>Seminar Ⅰ
+    
+    <br />
+		<span class="engclass">書報討論 Ⅰ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Lyu, Ling-Hsiao <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu34/S4-917<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Full
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63004&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63004&outline=63004&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63005<br />SS6003-A</td>
+<td>Seminar Ⅱ
+    
+    <br />
+		<span class="engclass">書報討論 Ⅱ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Shue, Jih-Hong <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu34/S4-807<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Full
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63005&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63005&outline=63005&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63006<br />SS6003-B</td>
+<td>Seminar Ⅱ
+    
+    <br />
+		<span class="engclass">書報討論 Ⅱ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Yang,Ya-Hui <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu34/S4-817<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Full
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63006&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63006&outline=63006&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63007<br />SS6007-*</td>
+<td>Classical Electrodynamics Ⅰ
+    
+    <br />
+		<span class="engclass">電動力學 Ⅰ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Ming-Quey <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Thu678/S4-811<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63007&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63007&outline=63007&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63008<br />SS6009-*</td>
+<td>Advanced Applied Mathematics I
+    
+    <br />
+		<span class="engclass">高等應用數學 I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Wang, H-T <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Tue34Z/S4-807<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63008&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63008&outline=63008&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63009<br />SS6012-*</td>
+<td>Electromagnetic Wave
+    
+    <br />
+		<span class="engclass">電磁波</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Tsai, Lung-Chih <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed67/S4-810<br/>Thu2/S4-810<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63009&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63009&outline=63009&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63010<br />SS6017-*</td>
+<td>Advanced Ionospheric Physics I
+    
+    <br />
+		<span class="engclass">高等電離層物理 I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Liu, Jann-Yeng <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Tue2/S4-810<br/>Wed9A/S4-810<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63010&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63010&outline=63010&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63011<br />SS6035-*</td>
+<td>Data Collection, Analyses & Applications 
+    <span class="notice">[Course Cancelled]</span>
+    <br />
+		<span class="engclass">資料收集、分析與應用</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Pan, Chen-Jeih <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed234/S4-817<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63011&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63011&outline=63011&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63012<br />SS6037-*</td>
+<td>The Principle of Radar Remote Sensing Ⅰ
+    
+    <br />
+		<span class="engclass">雷達遙測大氣原理 I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chu, Yen-Hsyang <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Thu678/S4-817<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63012&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63012&outline=63012&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63013<br />SS6039-*</td>
+<td>Advanced Space ScienceⅠ
+    
+    <br />
+		<span class="engclass">高等太空科學 I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chang, Chee-Wei <br/>Shue, Jih-Hong <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon678/S4-811<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63013&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63013&outline=63013&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63014<br />SS6041-*</td>
+<td>Magnetohydrodynamics
+    
+    <br />
+		<span class="engclass">磁性流體力學</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Hau, Lin-Ni <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Thu789/S4-807<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63014&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63014&outline=63014&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63015<br />SS6043-*</td>
+<td>Space Plasma PhysicsⅠ
+    
+    <br />
+		<span class="engclass">太空電漿物理Ⅰ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Lyu, Ling-Hsiao <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon34/S4-811<br/>Wed3/S4-811<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63015&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63015&outline=63015&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63016<br />SS6053-*</td>
+<td>Principle of Space Remote Sensing
+    
+    <br />
+		<span class="engclass">太空遙測原理</span>
+        
+        <span class="notice"><br />暑假上課 R3-114教室(summer, Locatation:R3-114)</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Ren, Hsuan <br/>Lin, Tang-Huang <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime"><br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63016&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63016&outline=63016&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63017<br />SS6081-*</td>
+<td>Digital Image Processing for Remote Sensing Ⅰ
+    
+    <br />
+		<span class="engclass">遙測數據影像處理 I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Ren, Hsuan <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Thu678/R3-110<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63017&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63017&outline=63017&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63018<br />SS7002-*</td>
+<td>Special Theory in Signal Processing 
+    
+    <br />
+		<span class="engclass">訊號處理特論</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Tsai, Lung-Chih <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Tue678/R3-112<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63018&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63018&outline=63018&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63019<br />SS7011-*</td>
+<td>Plasma Measurement Ⅰ
+    
+    <br />
+		<span class="engclass">電漿量測Ⅰ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chao, Chi-Kuang <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed34/S4-917<br/>Thu2/S4-917<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63019&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63019&outline=63019&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63020<br />SS7021-*</td>
+<td>Application for space optics instrument I
+    
+    <br />
+		<span class="engclass">太空光學儀器應用I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Kou, Cheng-Ling <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">WedBC/S4-817<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63020&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63020&outline=63020&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63021<br />SS8001-*</td>
+<td>Seminar Ⅰ
+    
+    <br />
+		<span class="engclass">書報討論Ⅰ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Lin, Chia-Hsien <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu34/S4-810<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Full
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63021&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63021&outline=63021&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63022<br />SS8013-*</td>
+<td>Special Topics on radio waves in space
+    
+    <br />
+		<span class="engclass">太空無線電波特論</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Pan, Chen-Jeih <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed234/S4-805<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63022&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63022&outline=63022&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63023<br />SS8025-*</td>
+<td>Atmospheric waves and coupling I
+    
+    <br />
+		<span class="engclass">大氣波耦合I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chang, Chee-Wei <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Tue89/S4-811<br/>Fri5/S4-811<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63023&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63023&outline=63023&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>63024<br />SS8032-*</td>
+<td>Special Topics on Ionospheric PhysicsⅡ 
+    
+    <br />
+		<span class="engclass">電離層物理特論Ⅱ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Liu, Jann-Yeng <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Tue678/S4-810<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63024&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63024&outline=63024&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>63025<br />SS8079-*</td>
+<td>Special Topics on Microwave Remote Sensing of the Atmosphere Ⅰ
+    <span class="notice">[Course Cancelled]</span>
+    <br />
+		<span class="engclass">大氣微波遙測特論Ⅰ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Liou, Yuei-An <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon123/R3-111<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=63025&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=63025&outline=63025&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64001<br />AG7002-*</td>
+<td>Mathematics in Applied Geology
+    
+    <br />
+		<span class="engclass">應地數學</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Jui-Sheng <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon78/S-253<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64001&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64001&outline=64001&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64002<br />AG7003-*</td>
+<td>Statistics in Geology
+    
+    <br />
+		<span class="engclass">地質統計學</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Lee, Chyi-Tyi <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Thu34/S-253<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64002&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64002&outline=64002&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64003<br />AG7009-*</td>
+<td>Environmental Geochemistry
+    
+    <br />
+		<span class="engclass">環境地球化學</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Tsai, Loung-Yie <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon34/S-130<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64003&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64003&outline=64003&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64004<br />AG7010-*</td>
+<td>Colloquium
+    
+    <br />
+		<span class="engclass">專題演講</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	0
+    </td>
+<td>
+		<span class="classtime">Fri34/S-130<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64004&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64004&outline=64004&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64005<br />AG7011-*</td>
+<td>Seminar of Environmental Geochemistry I
+    
+    <br />
+		<span class="engclass">環境地化專題討論I</span>
+        
+        <span class="notice"><br />與AG7037環境地化專題討論III合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Tsai, Loung-Yie <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-136<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64005&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64005&outline=64005&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64006<br />AG7012-*</td>
+<td>Seminar of Engineering Geology I
+    
+    <br />
+		<span class="engclass">工程地質專題討論I</span>
+        
+        <span class="notice"><br />AG7038工程地質專題討論III合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Lee, Chyi-Tyi <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-231<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64006&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64006&outline=64006&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64007<br />AG7014-*</td>
+<td>Seminar of Ground Water I
+    
+    <br />
+		<span class="engclass">地下水專題討論I</span>
+        
+        <span class="notice"><br />與AG7040地下水專題討論Ⅲ合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Chia-Shyun <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-134<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64007&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64007&outline=64007&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64008<br />AG7015-*</td>
+<td>Seminar of Geotechnical Engineering I
+    
+    <br />
+		<span class="engclass">大地工程專題討論I</span>
+        
+        <span class="notice"><br />與AG7041大地工程專題討論III合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Dong, Jia-Jyun <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-133<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64008&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64008&outline=64008&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64009<br />AG7016-*</td>
+<td>Special Topics Research I
+    
+    <br />
+		<span class="engclass">專題研究I</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu9/S-130<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64009&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64009&outline=64009&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64010<br />AG7037-*</td>
+<td>Seminar of Environmental Geochemistry III
+    
+    <br />
+		<span class="engclass">環境地化專題討論III</span>
+        
+        <span class="notice"><br />與AG7011環境地化專題討論I合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Tsai, Loung-Yie <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-136<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64010&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64010&outline=64010&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64011<br />AG7038-*</td>
+<td>Seminar of Engineering Geology III
+    
+    <br />
+		<span class="engclass">工程地質專題討論III</span>
+        
+        <span class="notice"><br />AG7012工程地質專題討論I合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Lee, Chyi-Tyi <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-231<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64011&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64011&outline=64011&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64012<br />AG7040-*</td>
+<td>Seminar of Ground Water III
+    <span class="notice">[Course Cancelled]</span>
+    <br />
+		<span class="engclass">地下水專題討論III</span>
+        
+        <span class="notice"><br />與AG7014地下水專題討論Ⅰ合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Chia-Shyun <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-134<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64012&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64012&outline=64012&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64013<br />AG7041-*</td>
+<td>Seminar of Geotechnical Engineering III
+    
+    <br />
+		<span class="engclass">大地工程專題討論III</span>
+        
+        <span class="notice"><br />與AG7015大地工程專題討論I合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Dong, Jia-Jyun <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-133<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64013&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64013&outline=64013&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64014<br />AG7043-*</td>
+<td>Experimental Mechanics of Geo-Material
+    
+    <br />
+		<span class="engclass">實驗地質材料力學</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Dong, Jia-Jyun <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri678/S-130<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64014&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64014&outline=64014&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64015<br />AG7053-*</td>
+<td>Adaptive Engineering Geology Ⅱ
+    
+    <br />
+		<span class="engclass">高等工程地質學Ⅱ</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Dong, Jia-Jyun <br/>Lee, Chyi-Tyi <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed78/S-253<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64015&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64015&outline=64015&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64016<br />AG7056-*</td>
+<td>Rock Mechanics
+    
+    <br />
+		<span class="engclass">岩石力學</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Dong, Jia-Jyun <br/>Tien, Yong-Ming <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed2/S-253<br/>Thu12/S-253<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64016&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64016&outline=64016&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64017<br />AG7058-*</td>
+<td>Seminar of Numerical Groundwater Models Ⅰ
+    
+    <br />
+		<span class="engclass">地下水數值模式專題討論Ⅰ</span>
+        
+        <span class="notice"><br />與AG7060地下水數值模式專題討論Ⅲ合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Ni, Chuen-Fa <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-253<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64017&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64017&outline=64017&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64018<br />AG7060-*</td>
+<td>Seminar of Numerical Groundwater Models III
+    
+    <br />
+		<span class="engclass">地下水數值模式專題討論III</span>
+        
+        <span class="notice"><br />與AG7058地下水數值模式專題討論Ⅰ合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Ni, Chuen-Fa <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-253<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64018&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64018&outline=64018&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64019<br />AG7063-*</td>
+<td>Advanced Field Geology I
+    
+    <br />
+		<span class="engclass">高等野外地質學I</span>
+        
+        <span class="notice"><br />英語授課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chu,Hao-Tsu <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Tue34/S-130<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64019&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64019&outline=64019&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64020<br />AG7064-*</td>
+<td>Groundwater Hydrology
+    
+    <br />
+		<span class="engclass">地下水文學</span>
+        
+        <span class="notice"><br />英語授課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Chia-Shyun <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed56/S-130<br/>Thu2/S-130<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64020&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64020&outline=64020&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64021<br />AG7066-*</td>
+<td>Applied Groundwater Modeling
+    
+    <br />
+		<span class="engclass">地下水數值模式與實習</span>
+        
+        <span class="notice"><br />英語授課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Ni, Chuen-Fa <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon56/S-130<br/>Tue5/S-130<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64021&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64021&outline=64021&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64022<br />AG7070-*</td>
+<td>Case History in Geotechnical Engineering
+    
+    <br />
+		<span class="engclass">大地工程個案分析</span>
+        
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chang, Wen-Cheng <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">WedAB/S-253<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64022&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64022&outline=64022&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>64023<br />AG7076-*</td>
+<td>Seminar of Geomechanics I
+    
+    <br />
+		<span class="engclass">地質力學專題討論I</span>
+        
+        <span class="notice"><br />與AG7078地質力學專題討論III合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Huang, Wen-Jeng <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-130<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64023&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64023&outline=64023&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>64024<br />AG7078-*</td>
+<td>Seminar of Geomechanics III
+    
+    <br />
+		<span class="engclass">地質力學專題討論III</span>
+        
+        <span class="notice"><br />與AG7076地質力學專題討論I合班上課</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Huang, Wen-Jeng <br/>
+    </td>
+<td>
+    	1
+    </td>
+<td>
+		<span class="classtime">Thu78/S-130<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		Unlimited
+    		
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=64024&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=64024&outline=64024&semester=1031');">Syllabus</a>
+    </td></tr></tbody></table><div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=41&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=38&amp;selectDept=&amp;week=1" title="Go to page 38">38</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=39&amp;selectDept=&amp;week=1" title="Go to page 39">39</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=40&amp;selectDept=&amp;week=1" title="Go to page 40">40</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=41&amp;selectDept=&amp;week=1" title="Go to page 41">41</a>, <strong>42</strong>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=43&amp;selectDept=&amp;week=1" title="Go to page 43">43</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=44&amp;selectDept=&amp;week=1" title="Go to page 44">44</a>, <a href="/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=45&amp;selectDept=&amp;week=1" title="Go to page 45">45</a><a href=/Course/main/query/byKeywords;jsessionid=EA88AACA24D1E64EFF5AC427AB1EDCBD?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=43&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+
+
+<br/>
+<br/>
+
+
+       
+
+
+
+    </div>
+  </div><!-- end of content	-->
+  
+
+
+<div id="content_footer"></div>
+<div id="footer">
+	<p align="center">Address: No.300, Jhongda Rd., Jhongli City, Taoyuan County 32001, Taiwan (R.O.C.)  TEL:+886-3-4227151 Copyright: National Central University. All Rights Reserved </p>
+</div>
+</div>	<!-- end of container	-->
+<!-- 遮罩 -->
+<div id="overlay_sh" class="overlay_sh"></div>
+</body>
+</html>
+
+		
+

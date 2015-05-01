@@ -1,0 +1,2683 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>New Course Schedule Planning System</title>
+
+<script type="text/javascript">
+	var	baseDir = '/Course';
+	var basedir = baseDir;
+	var language = '1';
+	var currentStage = 'PRINT_COURSE_TERMINATION';
+</script>
+
+<link rel="stylesheet" href="/Course/css/course.css" type="text/css" />
+<script type="text/javascript" src="/Course/js/tools.js"></script>
+
+<!--jQuery Requires -->  
+<script type="text/javascript" src="/Course/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/Course/js/jquery-ui-1.8.custom.min.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.metadata.js"></script>
+
+<!--CourseList-->
+<script type="text/javascript" src="/Course/js/jquery.tablednd_0_5.js"></script>
+<script type="text/javascript" src="/Course/js/jquery-impromptu.3.0.min.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.client.js"></script>
+
+<!-- <script type="text/javascript" src="/Course/js/list.js"></script> -->
+
+<!-- mbMenu Requires -->  
+<script type="text/javascript" src="/Course/js/mbMenu.js"></script>
+<script type="text/javascript" src="/Course/js/styleswitch.js"></script>
+<link rel="stylesheet" type="text/css" href="/Course/css/menu.css" title="styles1"  media="screen" />
+<!--<script type="text/javascript" src="/Course/js/menu_core.js"></script>-->
+
+	
+	
+		<script type="text/javascript" src="/Course/main/support/menu_core_en.js"></script>
+	
+
+
+<script type="text/javascript" src="/Course/js/windowOpen.js"></script>
+<!-- Dialog Requires -->
+<!--<link rel="stylesheet" type="text/css" href="/Course/css/dialog.css" title="styles1"  media="screen" />-->
+<!--<link type="text/css" href="/Course/css/jquery-ui.css" rel="stylesheet" />-->
+<!--<script type="text/javascript" src="/Course/js/dialog_core.js"></script>-->
+
+<!-- Select -->
+<script type="text/javascript" src="/Course/js/jquery.delegate.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.bgiframe.js"></script>
+<!--script type="text/javascript" src="/Course/js/jquery.dimensions.js"></script-->
+<script type="text/javascript" src="/Course/js/chili-1.7.pack.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.tooltip.js"></script>
+<script type="text/javascript" src="/Course/js/jquery.floatinglayer.js"></script>
+<!--<script type="text/javascript" src="/Course/js/select.js"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="/Course/css/select.css" title="styles1"  media="screen" />-->
+<!--script type="text/javascript" src="/Course/js/jqcontextmenu.js"></script-->
+
+<!-- DWR Requires -->
+<!--<script type="text/javascript" src="/Course/include/js/prototype.js"></script>-->
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/Course/css/autocomplete.css"/>
+<script type='text/javascript' src='/Course/ajax/interface/CourseSearchService.js'></script>
+<script type="text/javascript" src="/Course/js/autocompleteByKeyword.js"></script>
+<script type='text/javascript' src='/Course/ajax/engine.js'></script>
+<script type='text/javascript' src='/Course/ajax/util.js'></script>
+<script type="text/javascript" src="/Course/js/windowOpen.js"></script>
+<script type="text/javascript" src="/Course/js/deptSearch.js"></script>
+
+
+
+<script type=text/javascript>
+jQuery(function() {  
+	checkYear();
+});  
+
+function checkYear(){
+	var year = document.getElementById("year").value;
+	var fall_spring = document.getElementById("fall_spring").value;
+	var semester = document.getElementById("year").value + document.getElementById("fall_spring").value;
+
+	if(year == 'all')
+	{
+		jQuery("#college_department").hide();
+		jQuery("#time").hide();
+		jQuery("#fall_spring").attr("disabled", true);
+	}
+	else if(semester == '1032'){
+		jQuery("#college_department").show();
+		jQuery("#time").show();
+		jQuery("#fall_spring").attr("disabled", false);
+	}
+	else{
+		jQuery("#college_department").show();
+		jQuery("#time").hide();
+		jQuery("#fall_spring").attr("disabled", false);
+	}
+
+	//改變單位系所選單
+	changeSelectDept(semester, '');
+}
+
+function updateList(obj, div) {
+	var search = obj.value;
+	var year = document.getElementById("year").value;
+	var fall_spring = document.getElementById("fall_spring").value;
+	var selectDept = document.getElementById("selectDept").value;
+
+	if(year != "" && fall_spring != "" && search != "")
+	{	
+		var semester = document.getElementById("year").value + document.getElementById("fall_spring").value;
+	
+		var nowSemester = '1032';			
+
+		if(year == 'all')
+		{
+			//若為全部年度，則不推薦關鍵字
+		}
+		else if(semester == nowSemester)	//若為當學年度
+		{
+			CourseSearchService.findCoursesByName(search, 50, {
+		        callback:function(list){
+					setData(list, div, obj);
+		        }
+			});
+		}
+		else
+		{
+			CourseSearchService.findCoursesByNameFromPastSemester(search, semester, 50, selectDept, {
+		        callback:function(list){
+					setData(list, div, obj);
+	       	 	}
+			});
+		}			
+	}
+	else
+	{
+		resetData(div);
+	}	
+}
+
+
+function checkData(){
+	var keyword = document.getElementById("keyword").value;
+	var week = document.getElementById("week").value;
+	var day = document.getElementById("day").value;
+
+    if(keyword=="" && week=="" && day==""){
+         alert("關鍵字、星期、節次至少選擇一項");
+    }
+}
+
+</script>
+
+</head>
+
+<div id="container">
+  <div id="header">
+<!--	<div id="banner"></div>-->
+
+
+	
+		<div id="banner_left"></div>
+	
+	
+
+
+	
+		<!--div class="intro_banner"><a class="intro" href="course.html">回首頁</a>&nbsp;|&nbsp;<a class="intro" href="sitemap.html">網站地圖</a>&nbsp;|&nbsp;聯絡我們&nbsp;|&nbsp;登入</div-->
+	<div id="banner_right">
+		
+
+
+<span class="intro_banner">
+
+	
+
+	
+
+	
+
+	
+
+	
+	<a class="intro" href="/Course/main/lang">中文</a>&nbsp;|
+	
+
+	
+
+	
+	<a class="intro" href="/Course/main/sitemap">Site Map</a>&nbsp;|
+	
+
+	
+	<a class="intro" href="/Course/main/about">About</a>&nbsp;|
+	
+
+	
+
+	
+	<a class="intro" href="/Course/main/manual">Manual</a>&nbsp;|
+	
+
+<!---->
+
+
+</span><br/>
+<span class="intro_banner">
+1032 | 
+
+Online user: 10&nbsp;|
+</span><br />
+<span class="intro_banner">
+[ Print Course Termination Online ]
+</span>
+
+	</div>
+    
+
+<div id="menu">
+	<table class="rootVoices" cellspacing='0' cellpadding='0' border='0'><tr>
+			
+				
+					
+						
+						
+						
+							<td class="rootVoice {menu: 'menu_news'}">News and Updates</td>
+						
+					
+				
+			
+				
+					
+						
+						
+						
+							<td class="rootVoice {menu: 'menu_query'}">Search for Courses</td>
+						
+					
+				
+			
+				
+					
+						
+							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">Login System</td>
+						
+						
+						
+					
+				
+			
+				
+			
+<!--			<td class="rootVoice {menu: 'empty'}" onClick="document.location='http://tw.yahoo.com';">開啟連結</td>-->
+<!--			<td class="rootVoice {menu: 'menuNews'}">最新資訊</td>-->
+<!--			<td class="rootVoice {menu: 'menuStdExplanation'}" >選課相關說明</td>-->
+<!--			<td class="rootVoice {menu: 'menuStdSign'}" >選課作業</td>-->
+<!--			<td class="rootVoice {menu: 'menuStdPersonal'}" >個人功能表</td>-->
+<!--			<td class="rootVoice {menu: 'menuSystem'}" >系統</td>-->
+	</tr></table>
+</div>
+  </div>
+  <div id="content">
+    
+
+<div id="bread">
+<img src="/Course/image/breadcrumb_icon.gif" />
+<a href="/Course">Home</a> &gt;
+<a href="/Course/main">New Course Schedule Planning System</a>
+
+
+
+	
+	&gt; <a href="/Course/main/query">Search for Courses</a>
+
+	
+	&gt; <a href="/Course/main/query/byKeywords">Search according to Keyword/Time/Departments</a>
+
+</div>
+    <div id="content_body">
+       
+<!-- 如有選課問題，請看相關資訊 -->
+<font color=red>Any problems related to course registration, please refer to News and Updates</font><BR/>
+
+<h1 align="center">Search according to Keyword / Time / Departments</h1><br />
+
+<div align="center"><b><font color='red'>System Maintenance：07:00 ~ 09:00 everyday (unavailable for course selection during this time)</font></b></div>
+
+<br>
+<p></p>
+<form name="myform" action="/Course/main/query/byKeywords" method="post" >
+<table cellspacing="0" cellpadding="1" class="search_table" width="700px" align="center">
+    <tr>
+			<th colspan="4"><strong>Select Academic Year and Semester</strong></th>
+  </tr>
+		<tr>
+			<td class="do">
+			Academic Year
+			</td>
+			<td>
+			<select id="year" name="year" onChange="checkYear()">
+				<option value="all">Select</option>
+				
+					
+				   <option selected VALUE='103'>103</option>
+				
+					
+				   <option  VALUE='102'>102</option>
+				
+					
+				   <option  VALUE='101'>101</option>
+				
+					
+				   <option  VALUE='100'>100</option>
+				
+					
+				   <option  VALUE='099'>99</option>
+				
+					
+				   <option  VALUE='098'>98</option>
+				
+					
+				   <option  VALUE='097'>97</option>
+				
+					
+				   <option  VALUE='096'>96</option>
+				
+					
+				   <option  VALUE='095'>95</option>
+				
+					
+				   <option  VALUE='094'>94</option>
+				
+					
+				   <option  VALUE='093'>93</option>
+				
+					
+				   <option  VALUE='092'>92</option>
+				
+					
+				   <option  VALUE='091'>91</option>
+				
+					
+				   <option  VALUE='090'>90</option>
+				
+					
+				   <option  VALUE='089'>89</option>
+				
+					
+				   <option  VALUE='088'>88</option>
+				
+					
+				   <option  VALUE='087'>87</option>
+				
+					
+				   <option  VALUE='086'>86</option>
+				
+					
+				   <option  VALUE='085'>85</option>
+				
+			</select>
+          </td>
+          <td class="do">semester
+          </td>
+          <td>
+			<select id="fall_spring" NAME="fall_spring" onChange="checkYear()">
+			<option selected VALUE="1">fall</option>
+			<option  VALUE="2">spring</option>
+
+			</select>
+            </td>
+		</tr>
+<tbody id="college_department">
+<tr>
+	<th colspan="4">Inquiry by Departments</th>
+</tr>
+<tr>
+	<td class="do">College / Department</td><td colspan="3">
+	<select id="selectDept" name="selectDept">
+
+	</select>
+	</td>
+</tr>
+</tbody>
+<tr>
+	<th colspan="4">Search with Keyword </th>
+</tr>
+<tr>
+	<td class="do">Course Name/Instructor's Name/Course Code/Serial Number Keyword</td>
+	<td colspan="3"><input type="text" size="50" id="keyword" name="keyword" value="" autocomplete="off" onKeyUp="updateList(this,'wordsList');"/>
+	    <div id="wordsList" class="auto_complete1" ></div>
+    </td>
+</tr>
+  
+<tbody id="time">
+<tr>
+	<th colspan="4">Search Course According to Time Slot</th>
+</tr>
+<tr>
+	<td class="do">Week</td>
+	<td><select name= "week" id="week">
+	<option value="">Select</option>
+    
+          <option  value="0">Sun</option>
+    
+          <option  value="1">Mon</option>
+    
+          <option  value="2">Tue</option>
+    
+          <option  value="3">Wed</option>
+    
+          <option  value="4">Thu</option>
+    
+          <option  value="5">Fri</option>
+    
+          <option  value="6">Sat</option>
+    
+    </select>
+	</td>
+	<td class="do">Class Section</td>
+	<td><select name= "day" id="day">
+		<option value="">Select</option>
+		  
+		   <option  value="1">1</option>
+		  
+		   <option  value="2">2</option>
+		  
+		   <option  value="3">3</option>
+		  
+		   <option  value="4">4</option>
+		  
+		   <option  value="Z">Z</option>
+		  
+		   <option  value="5">5</option>
+		  
+		   <option  value="6">6</option>
+		  
+		   <option  value="7">7</option>
+		  
+		   <option  value="8">8</option>
+		  
+		   <option  value="9">9</option>
+		  
+		   <option  value="A">A</option>
+		  
+		   <option  value="B">B</option>
+		  
+		   <option  value="C">C</option>
+		  
+		   <option  value="D">D</option>
+		  
+		   <option  value="E">E</option>
+		  
+		   <option  value="F">F</option>
+		
+		</select>
+	</td>
+</tr>
+</tbody>
+<tr>
+	<td colspan="4" align="right">
+      <input  name="query" type="submit" value="Search" />
+    </td>
+</tr>
+</table>
+</form>
+<br />
+
+
+
+	
+
+
+
+
+
+<div class="pagelinks" align="center"><strong>&laquo;</strong><strong>1</strong>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1" title="Go to page 2">2</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=3&amp;selectDept=&amp;week=1" title="Go to page 3">3</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=4&amp;selectDept=&amp;week=1" title="Go to page 4">4</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1" title="Go to page 5">5</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=6&amp;selectDept=&amp;week=1" title="Go to page 6">6</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1" title="Go to page 7">7</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=8&amp;selectDept=&amp;week=1" title="Go to page 8">8</a><a href=/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+<table id="item" cellpadding="1" class="t6" cellspacing="0">
+<thead>
+<tr>
+<th>Serial Number<br />Course Code - Class</th>
+<th>Course Name/Remark</th>
+<th>Instructor</th>
+<th>Credit</th>
+<th>Time/Building and Room Number</th>
+<th>Required or Elective</th>
+<th>Whole Year or Semester</th>
+<th>Maximum Number</th>
+<th>Assignment Criteria</th>
+<th>Syllabus</th></tr></thead>
+<tbody>
+<tr class="odd">
+<td>00001<br />LN0025-A</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chang, Herng-Ru <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon234/O-106<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00001&outline=1&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00002<br />LN0025-B</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Wang, Chung-Chen <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon234/O-105<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		49
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=2&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00002&outline=2&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00003<br />LN0025-C</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		CHIN, HSIEN-YUNG <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon234/O-203-1<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=3&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00003&outline=3&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00004<br />LN0025-D</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Wang, Chung-Chen <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon567/O-105<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		49
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=4&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00004&outline=4&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00005<br />LN0025-E</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon567/O-106<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=5&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00005&outline=5&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00006<br />LN0025-F</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Yu, Cheu-Chu <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Tue567/O-105<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=6&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00006&outline=6&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00007<br />LN0025-G</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chian, Jen-Kuang <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Tue567/O-203-1<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=7&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00007&outline=7&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00008<br />LN0025-H</td>
+<td>Japanese(I) A
+    
+    <br />
+		<span class="engclass">日文(一)A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri234/O-203-1<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=8&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00008&outline=8&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00009<br />LN0026-A</td>
+<td>Japanese (I) B
+    
+    <br />
+		<span class="engclass">日文(一) B</span>
+        
+        <span class="notice"><br />初級課程。大學部課程。限修過日文一A且成績及格者選修。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chang, Herng-Ru <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon567/O-203-1<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=9&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00009&outline=9&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00010<br />LN0026-B</td>
+<td>Japanese (I) B
+    
+    <br />
+		<span class="engclass">日文(一) B</span>
+        
+        <span class="notice"><br />初級課程。大學部課程。限修過日文一A且成績及格者選修，歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chian, Jen-Kuang <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri567/O-104<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=10&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00010&outline=10&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00011<br />LN0027-A</td>
+<td>Japanese(II) A
+    
+    <br />
+		<span class="engclass">日文(二) A</span>
+        
+        <span class="notice"><br />中級課程。大學部課程。限修過一年日文者選修。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Hsu, Meng-Jung <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri234/O-105<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		49
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=11&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00011&outline=11&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00012<br />LN0027-B</td>
+<td>Japanese(II) A
+    
+    <br />
+		<span class="engclass">日文(二) A</span>
+        
+        <span class="notice"><br />中級課程。大學部課程。限修過一年日文者選修。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		HSU, PI-JU <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri567/O-105<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		49
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=12&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00012&outline=12&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00013<br />LN0043-A</td>
+<td>German (Ｉ) A
+    
+    <br />
+		<span class="engclass">德文(一) A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed678/O-203-1<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		49
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=13&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00013&outline=13&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00014<br />LN0043-B</td>
+<td>German (Ｉ) A
+    
+    <br />
+		<span class="engclass">德文(一) A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri234/O-106<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=14&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00014&outline=14&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00015<br />LN0045-*</td>
+<td>German II A
+    
+    <br />
+		<span class="engclass">德文(二) A</span>
+        
+        <span class="notice"><br />中級課程。大學部課程。限修過一年德文者選修。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri567/O-106<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=15&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00015&outline=15&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00016<br />LN0065-A</td>
+<td>French (Ｉ) A
+    
+    <br />
+		<span class="engclass">法文(一) A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Mickael Pommier <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed234/O-105<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=16&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00016&outline=16&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00017<br />LN0065-B</td>
+<td>French (Ｉ) A
+    
+    <br />
+		<span class="engclass">法文(一) A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Mickael Pommier <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed678/O-105<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=17&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00017&outline=17&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00018<br />LN0083-A</td>
+<td>Spanish (Ｉ) A
+    
+    <br />
+		<span class="engclass">西班牙文(一) A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程。歷史所碩士生、中文系博士生、哲研所博士生請於加退選期間至文學院辦公室領取密碼加選</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Cristina <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Mon789/O-104<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		48
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=18&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00018&outline=18&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00019<br />LN0083-B</td>
+<td>Spanish (Ｉ) A
+    
+    <br />
+		<span class="engclass">西班牙文(一) A</span>
+        
+        <span class="notice"><br />零起點初級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed678/M-116<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=19&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00019&outline=19&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00020<br />LN0101-*</td>
+<td>Chinese Listening and Speaking A
+    
+    <br />
+		<span class="engclass">華語聽與說A</span>
+        
+        <span class="notice"><br />初級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Wu, Fu-Ju <br/>
+    </td>
+<td>
+    	4
+    </td>
+<td>
+		<span class="classtime">Wed34/O-404<br/>Thu34/O-312<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=20&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00020&outline=20&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00021<br />LN0102-*</td>
+<td>Chinese Listening and Speaking B
+    
+    <br />
+		<span class="engclass">華語聽與說B</span>
+        
+        <span class="notice"><br />初中級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Wu, Fu-Ju <br/>
+    </td>
+<td>
+    	4
+    </td>
+<td>
+		<span class="classtime">Wed56/A-113<br/>Thu56/O-211<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00021&outline=21&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00022<br />LN0103-*</td>
+<td>Chinese Listening and Speaking C
+    
+    <br />
+		<span class="engclass">華語聽與說C</span>
+        
+        <span class="notice"><br />中級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Li, Ming-Yi <br/>
+    </td>
+<td>
+    	4
+    </td>
+<td>
+		<span class="classtime">Tue78/O-212<br/>Thu56/O-312<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=22&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00022&outline=22&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00023<br />LN0201-*</td>
+<td>Chinese Reading and Writing A
+    
+    <br />
+		<span class="engclass">華文讀寫A</span>
+        
+        <span class="notice"><br />初中級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Wu, Fu-Ju <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Tue56/O-212<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=23&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00023&outline=23&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00024<br />LN0301-*</td>
+<td>Introduction to Teaching Chinese as a Second or Foreign Language
+    
+    <br />
+		<span class="engclass">華語文教學概論</span>
+        
+        <span class="notice"><br />華語學程必修課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Li, Ming-Yi <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Wed678/O-312<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=24&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00024&outline=24&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00025<br />LN0401-*</td>
+<td>Chinese Fable and Short Essay
+    
+    <br />
+		<span class="engclass">中國寓言與短文賞析</span>
+        
+        <span class="notice"><br />中高級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Thu78/C2-106<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00025&outline=25&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00026<br />LN0403-*</td>
+<td>Basic Chinese for Chinese Heritage Students (I)
+    
+    <br />
+		<span class="engclass">僑生先修華語 I</span>
+        
+        <span class="notice"><br />中高級課程。大學部課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Tue78/O-104<br/> </span>
+    </td>
+<td>
+    	Elective
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		50
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00026&outline=26&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00027<br />LN1011-*</td>
+<td>Freshman English: Listening and Speaking 
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />限大二以上需重修或補修大一英文的學生選修 (不分級數)</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chu, Kitty <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri567/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		43
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=27&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00027&outline=27&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00028<br />LN1012-*</td>
+<td>Freshman English: Reading and Writing 
+    
+    <br />
+		<span class="engclass">大一英文：閱讀與寫作</span>
+        
+        <span class="notice"><br />限大二以上需重修或補修大一英文的學生選修 (不分級數)</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Pan, Ming-Jong <br/>
+    </td>
+<td>
+    	3
+    </td>
+<td>
+		<span class="classtime">Fri234/I1-107<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=28&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00028&outline=28&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00029<br />LN1013-A</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />初級課程。限英文被分至初級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chu, Kitty <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon78/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=29&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00029&outline=29&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00030<br />LN1013-B</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />初級課程。限英文被分至初級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chueh, Yu-Hsuan <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed56/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=30&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00030&outline=30&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00031<br />LN1013-C</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />初級課程。限英文被分至初級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Yang, Joanna <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Thu34/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=31&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00031&outline=31&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00032<br />LN1013-D</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />初級課程。限英文被分至初級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Rachel <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Fri12/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=32&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00032&outline=32&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00033<br />LN1014-A</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen ,Wen-Lin <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon34/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=33&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00033&outline=33&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00034<br />LN1014-B</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生須選修課號LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Liu, Ai-Ping <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon78/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=34&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00034&outline=34&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00035<br />LN1014-C</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Keng, Wen-Yau <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed34/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=35&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00035&outline=35&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00036<br />LN1014-D</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chuang, Chang-Ching <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed56/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=36&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00036&outline=36&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00037<br />LN1014-E</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chuang, Chang-Ching <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed78/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=37&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00037&outline=37&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00038<br />LN1014-F</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Hu, Chia-Yu <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Thu34/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=38&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00038&outline=38&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00039<br />LN1014-G</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Keng, Wen-Yau <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Thu78/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=39&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00039&outline=39&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00040<br />LN1014-H</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Liu, Grace <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Fri12/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=40&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00040&outline=40&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00041<br />LN1014-I</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />中級課程。限英文被分至中級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chen, Rachel <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Fri34/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=41&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00041&outline=41&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00042<br />LN1014-Z</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />暑期預修課程。限103學年度「準大一新生」選修。中級課程。上課時間：7/1~7/24每週二三四上午9:00-11:50。教室：O-210</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chin,Jonathan <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime"><br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		40
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=42&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00042&outline=42&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00043<br />LN1015-A</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />高級課程。限英文被分至高級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Hsieh, Ming-Hui <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon34/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=43&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00043&outline=43&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00044<br />LN1015-B</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />高級課程。限英文被分至高級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chin,Jonathan <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed34/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=44&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00044&outline=44&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00045<br />LN1015-C</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />高級課程。限英文被分至高級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chin,Jonathan <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed78/O-211<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=45&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00045&outline=45&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00046<br />LN1015-D</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />高級課程。限英文被分至高級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		 <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Thu78/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=46&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00046&outline=46&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00047<br />LN1015-E</td>
+<td>Freshman English: Listening and Speaking
+    
+    <br />
+		<span class="engclass">大一英文：聽力與會話</span>
+        
+        <span class="notice"><br />高級課程。限英文被分至高級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Huang, Jessie <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Fri34/O-210<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=47&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00047&outline=47&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00048<br />LN1016-A</td>
+<td>Freshman English: Reading and Writing
+    
+    <br />
+		<span class="engclass">大一英文：閱讀與寫作</span>
+        
+        <span class="notice"><br />初級課程。限英文被分至初級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Liu, Ai-Ping <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Mon34/O-212<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=48&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00048&outline=48&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="odd">
+<td>00049<br />LN1016-B</td>
+<td>Freshman English: Reading and Writing
+    
+    <br />
+		<span class="engclass">大一英文：閱讀與寫作</span>
+        
+        <span class="notice"><br />初級課程。限英文被分至初級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chueh, Yu-Hsuan <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed34/O-106<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=49&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00049&outline=49&semester=1031');">Syllabus</a>
+    </td></tr>
+<tr class="even">
+<td>00050<br />LN1016-C</td>
+<td>Freshman English: Reading and Writing
+    
+    <br />
+		<span class="engclass">大一英文：閱讀與寫作</span>
+        
+        <span class="notice"><br />初級課程。限英文被分至初級者選修。重補修生需選修LN1011、LN1012之3學分課程</span>
+        <span class="descript"><br />		
+		
+		
+		
+		[Not for preliminary]
+		
+		</span>
+	</td>
+<td>
+		Chueh, Yu-Hsuan <br/>
+    </td>
+<td>
+    	2
+    </td>
+<td>
+		<span class="classtime">Wed78/O-106<br/> </span>
+    </td>
+<td>
+    	Required
+    </td>
+<td>
+    	Half
+    </td>
+<td>
+    	
+    		
+    		46
+    	
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=50&semester=1031');">Assignment Criteria</a>
+    </td>
+<td>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=00050&outline=50&semester=1031');">Syllabus</a>
+    </td></tr></tbody></table><div class="pagelinks" align="center"><strong>&laquo;</strong><strong>1</strong>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1" title="Go to page 2">2</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=3&amp;selectDept=&amp;week=1" title="Go to page 3">3</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=4&amp;selectDept=&amp;week=1" title="Go to page 4">4</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1" title="Go to page 5">5</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=6&amp;selectDept=&amp;week=1" title="Go to page 6">6</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1" title="Go to page 7">7</a>, <a href="/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=8&amp;selectDept=&amp;week=1" title="Go to page 8">8</a><a href=/Course/main/query/byKeywords;jsessionid=BB43E182507CF554209A362C4520C239?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+
+
+<br/>
+<br/>
+
+
+       
+
+
+
+    </div>
+  </div><!-- end of content	-->
+  
+
+
+<div id="content_footer"></div>
+<div id="footer">
+	<p align="center">Address: No.300, Jhongda Rd., Jhongli City, Taoyuan County 32001, Taiwan (R.O.C.)  TEL:+886-3-4227151 Copyright: National Central University. All Rights Reserved </p>
+</div>
+</div>	<!-- end of container	-->
+<!-- 遮罩 -->
+<div id="overlay_sh" class="overlay_sh"></div>
+</body>
+</html>
+
+		
+
