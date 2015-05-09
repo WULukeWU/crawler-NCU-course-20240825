@@ -14,12 +14,12 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>New Course Schedule Planning System</title>
+<title>新選課登記系統</title>
 
 <script type="text/javascript">
 	var	baseDir = '/Course';
 	var basedir = baseDir;
-	var language = '1';
+	var language = '0';
 	var currentStage = 'PRINT_COURSE_TERMINATION';
 </script>
 
@@ -45,8 +45,8 @@
 <!--<script type="text/javascript" src="/Course/js/menu_core.js"></script>-->
 
 	
+		<script type="text/javascript" src="/Course/main/support/menu_core.js"></script>
 	
-		<script type="text/javascript" src="/Course/main/support/menu_core_en.js"></script>
 	
 
 
@@ -196,7 +196,7 @@ function checkData(){
 	
 
 	
-	<a class="intro" href="/Course/main/lang">中文</a>&nbsp;|
+	<a class="intro" href="/Course/main/lang">English</a>&nbsp;|
 	
 
 	
@@ -206,13 +206,13 @@ function checkData(){
 	
 
 	
-	<a class="intro" href="/Course/main/about">About</a>&nbsp;|
+	<a class="intro" href="/Course/main/about">關於本系統</a>&nbsp;|
 	
 
 	
 
 	
-	<a class="intro" href="/Course/main/manual">Manual</a>&nbsp;|
+	<a class="intro" href="/Course/main/manual">使用手冊</a>&nbsp;|
 	
 
 <!---->
@@ -222,10 +222,10 @@ function checkData(){
 <span class="intro_banner">
 1032 | 
 
-Online user: 32&nbsp;|
+線上人數: 9&nbsp;|
 </span><br />
 <span class="intro_banner">
-[ Print Course Termination Online ]
+[ 線上列印停修單階段 ]
 </span>
 
 	</div>
@@ -239,7 +239,7 @@ Online user: 32&nbsp;|
 						
 						
 						
-							<td class="rootVoice {menu: 'menu_news'}">News and Updates</td>
+							<td class="rootVoice {menu: 'menu_news'}">相關資訊</td>
 						
 					
 				
@@ -249,7 +249,7 @@ Online user: 32&nbsp;|
 						
 						
 						
-							<td class="rootVoice {menu: 'menu_query'}">Search for Courses</td>
+							<td class="rootVoice {menu: 'menu_query'}">課程查詢</td>
 						
 					
 				
@@ -257,7 +257,7 @@ Online user: 32&nbsp;|
 				
 					
 						
-							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">Login System</td>
+							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">登入系統</td>
 						
 						
 						
@@ -281,40 +281,40 @@ Online user: 32&nbsp;|
 <div id="bread">
 <img src="/Course/image/breadcrumb_icon.gif" />
 <a href="/Course">Home</a> &gt;
-<a href="/Course/main">New Course Schedule Planning System</a>
+<a href="/Course/main">新選課登記系統</a>
 
 
 
 	
-	&gt; <a href="/Course/main/query">Search for Courses</a>
+	&gt; <a href="/Course/main/query">課程查詢</a>
 
 	
-	&gt; <a href="/Course/main/query/byKeywords">Search according to Keyword/Time/Departments</a>
+	&gt; <a href="/Course/main/query/byKeywords">依關鍵字/時間/開課單位查詢</a>
 
 </div>
     <div id="content_body">
        
 <!-- 如有選課問題，請看相關資訊 -->
-<font color=red>Any problems related to course registration, please refer to News and Updates</font><BR/>
+<font color=red>如有選課問題，請看相關資訊</font><BR/>
 
-<h1 align="center">Search according to Keyword / Time / Departments</h1><br />
+<h1 align="center">依關鍵字 / 時間 / 開課單位查詢</h1><br />
 
-<div align="center"><b><font color='red'>System Maintenance：07:00 ~ 09:00 everyday (unavailable for course selection during this time)</font></b></div>
+<div align="center"><b><font color='red'>系統維護時間：07:00 ~ 09:00 每天(此期間無法選課)</font></b></div>
 
 <br>
 <p></p>
 <form name="myform" action="/Course/main/query/byKeywords" method="post" >
 <table cellspacing="0" cellpadding="1" class="search_table" width="700px" align="center">
     <tr>
-			<th colspan="4"><strong>Select Academic Year and Semester</strong></th>
+			<th colspan="4"><strong>選擇學年期</strong></th>
   </tr>
 		<tr>
 			<td class="do">
-			Academic Year
+			學年度
 			</td>
 			<td>
 			<select id="year" name="year" onChange="checkYear()">
-				<option value="all">Select</option>
+				<option value="all">請選擇</option>
 				
 					
 				   <option selected VALUE='103'>103</option>
@@ -375,22 +375,22 @@ Online user: 32&nbsp;|
 				
 			</select>
           </td>
-          <td class="do">semester
+          <td class="do">學期
           </td>
           <td>
 			<select id="fall_spring" NAME="fall_spring" onChange="checkYear()">
-			<option selected VALUE="1">fall</option>
-			<option  VALUE="2">spring</option>
+			<option selected VALUE="1">上</option>
+			<option  VALUE="2">下</option>
 
 			</select>
             </td>
 		</tr>
 <tbody id="college_department">
 <tr>
-	<th colspan="4">Inquiry by Departments</th>
+	<th colspan="4">依開課單位查詢</th>
 </tr>
 <tr>
-	<td class="do">College / Department</td><td colspan="3">
+	<td class="do">學院 / 系所</td><td colspan="3">
 	<select id="selectDept" name="selectDept">
 
 	</select>
@@ -398,10 +398,10 @@ Online user: 32&nbsp;|
 </tr>
 </tbody>
 <tr>
-	<th colspan="4">Search with Keyword </th>
+	<th colspan="4">依照關鍵字查詢</th>
 </tr>
 <tr>
-	<td class="do">Course Name/Instructor's Name/Course Code/Serial Number Keyword</td>
+	<td class="do">課名/教師姓名/課號/流水號關鍵字</td>
 	<td colspan="3"><input type="text" size="50" id="keyword" name="keyword" value="" autocomplete="off" onKeyUp="updateList(this,'wordsList');"/>
 	    <div id="wordsList" class="auto_complete1" ></div>
     </td>
@@ -409,32 +409,32 @@ Online user: 32&nbsp;|
   
 <tbody id="time">
 <tr>
-	<th colspan="4">Search Course According to Time Slot</th>
+	<th colspan="4">查詢某段有哪些課</th>
 </tr>
 <tr>
-	<td class="do">Week</td>
+	<td class="do">星期</td>
 	<td><select name= "week" id="week">
-	<option value="">Select</option>
+	<option value="">請選擇</option>
     
-          <option  value="0">Sun</option>
+          <option  value="0">日</option>
     
-          <option  value="1">Mon</option>
+          <option  value="1">一</option>
     
-          <option  value="2">Tue</option>
+          <option  value="2">二</option>
     
-          <option  value="3">Wed</option>
+          <option  value="3">三</option>
     
-          <option  value="4">Thu</option>
+          <option  value="4">四</option>
     
-          <option  value="5">Fri</option>
+          <option  value="5">五</option>
     
-          <option  value="6">Sat</option>
+          <option  value="6">六</option>
     
     </select>
 	</td>
-	<td class="do">Class Section</td>
+	<td class="do">節次</td>
 	<td><select name= "day" id="day">
-		<option value="">Select</option>
+		<option value="">請選擇</option>
 		  
 		   <option  value="1">1</option>
 		  
@@ -474,7 +474,7 @@ Online user: 32&nbsp;|
 </tbody>
 <tr>
 	<td colspan="4" align="right">
-      <input  name="query" type="submit" value="Search" />
+      <input  name="query" type="submit" value="查詢" />
     </td>
 </tr>
 </table>
@@ -489,38 +489,38 @@ Online user: 32&nbsp;|
 
 
 
-<div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=20&amp;selectDept=&amp;week=1" title="Go to page 20">20</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1" title="Go to page 21">21</a>, <strong>22</strong>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1" title="Go to page 23">23</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=24&amp;selectDept=&amp;week=1" title="Go to page 24">24</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=25&amp;selectDept=&amp;week=1" title="Go to page 25">25</a><a href=/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+<div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=20&amp;selectDept=&amp;week=1" title="Go to page 20">20</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1" title="Go to page 21">21</a>, <strong>22</strong>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1" title="Go to page 23">23</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=24&amp;selectDept=&amp;week=1" title="Go to page 24">24</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=25&amp;selectDept=&amp;week=1" title="Go to page 25">25</a><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
 <table id="item" cellpadding="1" class="t6" cellspacing="0">
 <thead>
 <tr>
-<th>Serial Number<br />Course Code - Class</th>
-<th>Course Name/Remark</th>
-<th>Instructor</th>
-<th>Credit</th>
-<th>Time/Building and Room Number</th>
-<th>Required or Elective</th>
-<th>Whole Year or Semester</th>
-<th>Maximum Number</th>
-<th>Assignment Criteria</th>
-<th>Syllabus</th></tr></thead>
+<th>流水號<br />課號-班別</th>
+<th>課程名稱/備註</th>
+<th>授課教師</th>
+<th>學分</th>
+<th>時間/教室</th>
+<th>選修別</th>
+<th>全/半</th>
+<th>人數限制</th>
+<th>分發條件</th>
+<th>課程綱要</th></tr></thead>
 <tbody>
 <tr class="odd">
 <td>25010<br />ST7011-*</td>
-<td>Survival Data Analysis Ⅰ 
+<td>存活資料分析Ⅰ
     
     <br />
-		<span class="engclass">存活資料分析Ⅰ</span>
+		<span class="engclass">Survival Data Analysis Ⅰ </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Eruma Takeshi <br/>
+		江村剛志 <br/>
     </td>
 <td>
     	3
@@ -529,40 +529,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue78/M-513<br/>Wed2/M-513<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25010&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25010&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25010&outline=25010&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25010&outline=25010&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>25011<br />ST7061-*</td>
-<td>Financial Time Series(I)
+<td>財務時間數列(I)
     
     <br />
-		<span class="engclass">財務時間數列(I)</span>
+		<span class="engclass">Financial Time Series(I)</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Teng, Huei-Wen <br/>
+		鄧惠文 <br/>
     </td>
 <td>
     	3
@@ -571,40 +571,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Thu234/M-605<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25011&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25011&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25011&outline=25011&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25011&outline=25011&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>25012<br />ST7069-*</td>
-<td>Colloquium I
+<td>專題演講 I
     
     <br />
-		<span class="engclass">專題演講 I</span>
+		<span class="engclass">Colloquium I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		 <br/>
+		各專家 <br/>
     </td>
 <td>
     	0
@@ -613,40 +613,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue4/M-605<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25012&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25012&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25012&outline=25012&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25012&outline=25012&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>25013<br />ST8081-*</td>
-<td>Special Topics Research Ⅰ
+<td>專題研究Ⅰ
     
     <br />
-		<span class="engclass">專題研究Ⅰ</span>
+		<span class="engclass">Special Topics Research Ⅰ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		 <br/>
+		各教授 <br/>
     </td>
 <td>
     	1
@@ -655,40 +655,40 @@ Online user: 32&nbsp;|
 		<span class="classtime"><br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25013&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25013&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25013&outline=25013&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25013&outline=25013&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>25014<br />ST6036-*</td>
-<td>Statistical Methods for Finance II
+<td>計量財務II
     
     <br />
-		<span class="engclass">計量財務II</span>
+		<span class="engclass">Statistical Methods for Finance II</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Teng, Huei-Wen <br/>
+		鄧惠文 <br/>
     </td>
 <td>
     	3
@@ -697,40 +697,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue2/M-708<br/>Wed34/M-708<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25014&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25014&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25014&outline=25014&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25014&outline=25014&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>25015<br />ST6075-*</td>
-<td>Topics on Applied Statistics (I)
+<td>應用統計專題 (I)
     
     <br />
-		<span class="engclass">應用統計專題 (I)</span>
+		<span class="engclass">Topics on Applied Statistics (I)</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Yuh-Ing <br/>
+		陳玉英 <br/>
     </td>
 <td>
     	1
@@ -739,40 +739,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon678/M-605<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25015&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=25015&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25015&outline=25015&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=25015&outline=25015&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26001<br />OS1005-*</td>
-<td>Introduction to Computer Science
+<td>計算機概論
     
     <br />
-		<span class="engclass">計算機概論</span>
+		<span class="engclass">Introduction to Computer Science</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Szu-Yu <br/>
+		陳思妤 <br/>
     </td>
 <td>
     	2
@@ -781,40 +781,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon12/IL-116<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26001&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26001&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26001&outline=26001&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26001&outline=26001&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26002<br />OS1006-*</td>
-<td>Introduction to Optics and Photonics I
+<td>光電科技概論Ⅰ
     
     <br />
-		<span class="engclass">光電科技概論Ⅰ</span>
+		<span class="engclass">Introduction to Optics and Photonics I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Sheng-Hui <br/>
+		陳昇暉 <br/>
     </td>
 <td>
     	1
@@ -823,40 +823,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Fri3/IL-111<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26002&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26002&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26002&outline=26002&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26002&outline=26002&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26003<br />OS2001-*</td>
-<td>Modern Physics
+<td>近代物理
     
     <br />
-		<span class="engclass">近代物理</span>
+		<span class="engclass">Modern Physics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang,Jui-Fen <br/>
+		張瑞芬 <br/>
     </td>
 <td>
     	3
@@ -865,40 +865,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed56/IL-116<br/>Thu6/IL-116<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26003&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26003&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26003&outline=26003&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26003&outline=26003&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26004<br />OS2003-*</td>
-<td>ElectromagnetismⅠ
+<td>電磁學Ⅰ
     
     <br />
-		<span class="engclass">電磁學Ⅰ</span>
+		<span class="engclass">ElectromagnetismⅠ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Cheng, Ko-Ting <br/>
+		鄭恪亭 <br/>
     </td>
 <td>
     	3
@@ -907,40 +907,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Thu2/IL-203<br/>Fri34/IL-203<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26004&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26004&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26004&outline=26004&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26004&outline=26004&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26005<br />OS2005-*</td>
-<td>Microeletronics I
+<td>電子學Ⅰ
     
     <br />
-		<span class="engclass">電子學Ⅰ</span>
+		<span class="engclass">Microeletronics I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Wu, Mao-Jen <br/>
+		伍茂仁 <br/>
     </td>
 <td>
     	3
@@ -949,40 +949,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue2/IL-203<br/>Thu34/IL-203<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26005&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26005&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26005&outline=26005&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26005&outline=26005&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26006<br />OS2008-*</td>
-<td>Engineering Mathematics Ⅱ
+<td>工程數學Ⅱ
     
     <br />
-		<span class="engclass">工程數學Ⅱ</span>
+		<span class="engclass">Engineering Mathematics Ⅱ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Yi-Chun <br/>
+		陳怡君 <br/>
     </td>
 <td>
     	3
@@ -991,40 +991,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed23/IL-203<br/>Fri2/IL-203<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26006&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26006&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26006&outline=26006&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26006&outline=26006&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26007<br />OS2009-*</td>
-<td>Circuit Theory
+<td>電路學
     
     <br />
-		<span class="engclass">電路學</span>
+		<span class="engclass">Circuit Theory</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Szu-Yu <br/>
+		陳思妤 <br/>
     </td>
 <td>
     	3
@@ -1033,40 +1033,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon4/IL-116<br/>Tue56/IL-116<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26007&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26007&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26007&outline=26007&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26007&outline=26007&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26008<br />OS2011-*</td>
-<td>Optoelectronic Semiconductor Physics
+<td>光電半導體物理
     
     <br />
-		<span class="engclass">光電半導體物理</span>
+		<span class="engclass">Optoelectronic Semiconductor Physics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lai,Kun-Yu <br/>
+		賴昆佑 <br/>
     </td>
 <td>
     	3
@@ -1075,40 +1075,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon678/IL-116<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26008&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26008&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26008&outline=26008&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26008&outline=26008&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26009<br />OS2012-*</td>
-<td>Quantum Physics
+<td>量子物理
     
     <br />
-		<span class="engclass">量子物理</span>
+		<span class="engclass">Quantum Physics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Luan, Pi-Gang <br/>
+		欒丕綱 <br/>
     </td>
 <td>
     	3
@@ -1117,40 +1117,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue678/IL-111<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26009&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26009&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26009&outline=26009&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26009&outline=26009&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26010<br />OS3003-*</td>
-<td>Optics II
+<td>光學Ⅱ
     
     <br />
-		<span class="engclass">光學Ⅱ</span>
+		<span class="engclass">Optics II</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chung, Te-Yuan <br/>
+		鍾德元 <br/>
     </td>
 <td>
     	3
@@ -1159,40 +1159,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon23/IL-203<br/>Wed4/IL-203<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26010&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26010&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26010&outline=26010&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26010&outline=26010&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26011<br />OS3011-A</td>
-<td>Experiment in Optics
+<td>光學實驗
     
     <br />
-		<span class="engclass">光學實驗</span>
+		<span class="engclass">Experiment in Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chien, Fan-Ching <br/>
+		簡汎清 <br/>
     </td>
 <td>
     	1
@@ -1201,40 +1201,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed789A/IL-106<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26011&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26011&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26011&outline=26011&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26011&outline=26011&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26012<br />OS3011-B</td>
-<td>Experiment in Optics
+<td>光學實驗
     
     <br />
-		<span class="engclass">光學實驗</span>
+		<span class="engclass">Experiment in Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Tsung-Hsun <br/>
+		楊宗勳 <br/>
     </td>
 <td>
     	1
@@ -1243,40 +1243,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Thu789A/IL-106<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26012&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26012&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26012&outline=26012&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26012&outline=26012&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26013<br />OS3013-*</td>
-<td>Optical Simulation with ASAP(I)
+<td>ASAP光機模擬(I)
     
     <br />
-		<span class="engclass">ASAP光機模擬(I)</span>
+		<span class="engclass">Optical Simulation with ASAP(I)</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Huang, Howard Raychiyjlin <br/>
+		林睿騏 <br/>
     </td>
 <td>
     	1
@@ -1285,40 +1285,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">FriZ/IL-317<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26013&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26013&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26013&outline=26013&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26013&outline=26013&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26014<br />OS4003-*</td>
-<td>Special Topics Research Ⅰ
+<td>專題研究Ⅰ
     
     <br />
-		<span class="engclass">專題研究Ⅰ</span>
+		<span class="engclass">Special Topics Research Ⅰ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Tsung-Hsun <br/>Sun, Ching-Cherng <br/>Luan, Pi-Gang <br/>
+		楊宗勳 <br/>孫慶成 <br/>欒丕綱 <br/>
     </td>
 <td>
     	3
@@ -1327,40 +1327,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">FriABC/IL-112<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26014&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26014&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26014&outline=26014&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26014&outline=26014&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26015<br />OS6001-*</td>
-<td>Seminar
+<td>書報討論
     
     <br />
-		<span class="engclass">書報討論</span>
+		<span class="engclass">Seminar</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Chao-Wen <br/>Sun, Wen-Hsin <br/>
+		梁肇文 <br/>孫文信 <br/>
     </td>
 <td>
     	0
@@ -1369,40 +1369,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Fri67/IL-104<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26015&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26015&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26015&outline=26015&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26015&outline=26015&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26016<br />OS6003-A</td>
-<td>Fourier Optics
+<td>傅氏光學
     
     <br />
-		<span class="engclass">傅氏光學</span>
+		<span class="engclass">Fourier Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Cheng, Yih-Shyang <br/>
+		鄭益祥 <br/>
     </td>
 <td>
     	3
@@ -1411,40 +1411,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue4/IL-116<br/>Fri23/IL-116<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26016&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26016&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26016&outline=26016&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26016&outline=26016&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26017<br />OS6003-B</td>
-<td>Fourier Optics
+<td>傅氏光學
     
     <br />
-		<span class="engclass">傅氏光學</span>
+		<span class="engclass">Fourier Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Sun, Ching-Cherng <br/>
+		孫慶成 <br/>
     </td>
 <td>
     	3
@@ -1453,40 +1453,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">TueABC/IL-203<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26017&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26017&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26017&outline=26017&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26017&outline=26017&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26018<br />OS6015-A</td>
-<td>Geometrical Optics
+<td>幾何光學
     
     <br />
-		<span class="engclass">幾何光學</span>
+		<span class="engclass">Geometrical Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Chao-Wen <br/>
+		梁肇文 <br/>
     </td>
 <td>
     	3
@@ -1495,40 +1495,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue23/IL-116<br/>Fri4/IL-116<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26018&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26018&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26018&outline=26018&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26018&outline=26018&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26019<br />OS6015-B</td>
-<td>Geometrical Optics
+<td>幾何光學
     
     <br />
-		<span class="engclass">幾何光學</span>
+		<span class="engclass">Geometrical Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chien, Fan-Ching <br/>
+		簡汎清 <br/>
     </td>
 <td>
     	3
@@ -1537,40 +1537,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">ThuABC/IL-116<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26019&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26019&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26019&outline=26019&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26019&outline=26019&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26020<br />OS6053-*</td>
-<td>Topics on Laser Applications
+<td>雷射應用專題
     
     <br />
-		<span class="engclass">雷射應用專題</span>
+		<span class="engclass">Topics on Laser Applications</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Yen-Hung <br/>
+		陳彥宏 <br/>
     </td>
 <td>
     	3
@@ -1579,40 +1579,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">TueABC/IL-113<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26020&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26020&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26020&outline=26020&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26020&outline=26020&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26021<br />OS6060-*</td>
-<td>Special Topics on Advanced Integrated Optics
-    <span class="notice">[Course Cancelled]</span>
+<td>高等積光專論
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">高等積光專論</span>
+		<span class="engclass">Special Topics on Advanced Integrated Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Yin-Jung <br/>
+		張殷榮 <br/>
     </td>
 <td>
     	3
@@ -1621,40 +1621,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Thu234/IL-111<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26021&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26021&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26021&outline=26021&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26021&outline=26021&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26022<br />OS6064-*</td>
-<td>Nonlinear Optics 
+<td>非線性光學
     
     <br />
-		<span class="engclass">非線性光學</span>
+		<span class="engclass">Nonlinear Optics </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Yen-Hung <br/>
+		陳彥宏 <br/>
     </td>
 <td>
     	3
@@ -1663,40 +1663,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon567/IL-113<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26022&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26022&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26022&outline=26022&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26022&outline=26022&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26023<br />OS7014-*</td>
-<td>Theory of Holography 
+<td>全像理論
     
     <br />
-		<span class="engclass">全像理論</span>
+		<span class="engclass">Theory of Holography </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Cheng, Yih-Shyang <br/>
+		鄭益祥 <br/>
     </td>
 <td>
     	3
@@ -1705,40 +1705,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed234/IL-113<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26023&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26023&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26023&outline=26023&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26023&outline=26023&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26024<br />OS7016-*</td>
-<td>Topics on Thin Film Optics
+<td>薄膜光學專題
     
     <br />
-		<span class="engclass">薄膜光學專題</span>
+		<span class="engclass">Topics on Thin Film Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lee, Cheng-Chung <br/>
+		李正中 <br/>
     </td>
 <td>
     	3
@@ -1747,40 +1747,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon678/IL-111<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26024&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26024&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26024&outline=26024&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26024&outline=26024&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26025<br />OS7020-*</td>
-<td>Topics on Optical Mechanics Design
+<td>光機設計專題
     
     <br />
-		<span class="engclass">光機設計專題</span>
+		<span class="engclass">Topics on Optical Mechanics Design</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Chii-Chang <br/>Chen, Sheng-Hui <br/>
+		陳啟昌 <br/>陳昇暉 <br/>
     </td>
 <td>
     	3
@@ -1789,40 +1789,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon234/IL-112<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26025&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26025&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26025&outline=26025&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26025&outline=26025&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26026<br />OS7036-*</td>
-<td>Advanced Vision Optics 
+<td>高等視覺光學
     
     <br />
-		<span class="engclass">高等視覺光學</span>
+		<span class="engclass">Advanced Vision Optics </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		CHANG, RONG-SENG <br/>
+		張榮森 <br/>
     </td>
 <td>
     	3
@@ -1831,40 +1831,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">MonABC/IL-317<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26026&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26026&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26026&outline=26026&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26026&outline=26026&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26027<br />OS7042-*</td>
-<td>Medical Optics 
+<td>醫學光學
     
     <br />
-		<span class="engclass">醫學光學</span>
+		<span class="engclass">Medical Optics </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		CHANG, RONG-SENG <br/>
+		張榮森 <br/>
     </td>
 <td>
     	3
@@ -1873,40 +1873,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">WedABC/IL-317<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26027&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26027&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26027&outline=26027&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26027&outline=26027&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26028<br />OS7069-*</td>
-<td>Topics of Photonics Crystals
-    <span class="notice">[Course Cancelled]</span>
+<td>光子晶體專題
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">光子晶體專題</span>
+		<span class="engclass">Topics of Photonics Crystals</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Luan, Pi-Gang <br/>
+		欒丕綱 <br/>
     </td>
 <td>
     	3
@@ -1915,40 +1915,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Thu678/IL-113<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26028&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26028&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26028&outline=26028&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26028&outline=26028&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26029<br />OS7072-*</td>
-<td>Topics Advance Bio-Optics
-    <span class="notice">[Course Cancelled]</span>
+<td>高等生物光電專題
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">高等生物光電專題</span>
+		<span class="engclass">Topics Advance Bio-Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		CHANG, RONG-SENG <br/>
+		張榮森 <br/>
     </td>
 <td>
     	3
@@ -1957,40 +1957,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">MonABC/IL-113<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26029&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26029&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26029&outline=26029&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26029&outline=26029&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26030<br />OS7073-*</td>
-<td>Topic on Nano Electronic Optics
-    <span class="notice">[Course Cancelled]</span>
+<td>奈米光電專題
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">奈米光電專題</span>
+		<span class="engclass">Topic on Nano Electronic Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		CHANG, RONG-SENG <br/>
+		張榮森 <br/>
     </td>
 <td>
     	3
@@ -1999,40 +1999,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">WedABC/IL-317<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26030&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26030&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26030&outline=26030&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26030&outline=26030&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26031<br />OS7084-*</td>
-<td>Photonics Crystals
+<td>光子晶體
     
     <br />
-		<span class="engclass">光子晶體</span>
+		<span class="engclass">Photonics Crystals</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Luan, Pi-Gang <br/>
+		欒丕綱 <br/>
     </td>
 <td>
     	3
@@ -2041,40 +2041,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed678/IL-113<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26031&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26031&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26031&outline=26031&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26031&outline=26031&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26032<br />OS7088-*</td>
-<td>Special Topic in Optical Design
+<td>光學設計專題
     
     <br />
-		<span class="engclass">光學設計專題</span>
+		<span class="engclass">Special Topic in Optical Design</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Sun, Wen-Hsin <br/>
+		孫文信 <br/>
     </td>
 <td>
     	3
@@ -2083,40 +2083,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">ThuABC/IL-317<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26032&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26032&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26032&outline=26032&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26032&outline=26032&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26033<br />OS7091-*</td>
-<td>Color Science and Technology
+<td>色彩光學
     
     <br />
-		<span class="engclass">色彩光學</span>
+		<span class="engclass">Color Science and Technology</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Tsung-Hsun <br/>
+		楊宗勳 <br/>
     </td>
 <td>
     	3
@@ -2125,40 +2125,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">MonABC/IL-116<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26033&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26033&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26033&outline=26033&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26033&outline=26033&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26034<br />OS7097-*</td>
-<td>Guided Wave Optics
+<td>波導光學
     
     <br />
-		<span class="engclass">波導光學</span>
+		<span class="engclass">Guided Wave Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Tai, Chao-Yi <br/>
+		戴朝義 <br/>
     </td>
 <td>
     	3
@@ -2167,40 +2167,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Tue789/IL-317<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26034&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26034&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26034&outline=26034&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26034&outline=26034&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26035<br />OS7117-*</td>
-<td>Topics on Ultrafast Optics
+<td>超快光學專題
     
     <br />
-		<span class="engclass">超快光學專題</span>
+		<span class="engclass">Topics on Ultrafast Optics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Tai, Chao-Yi <br/>
+		戴朝義 <br/>
     </td>
 <td>
     	3
@@ -2209,40 +2209,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">MonABC/IL-112<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26035&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26035&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26035&outline=26035&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26035&outline=26035&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26036<br />OS7119-*</td>
-<td>Optical System Design
+<td>光學系統設計
     
     <br />
-		<span class="engclass">光學系統設計</span>
+		<span class="engclass">Optical System Design</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Sun, Wen-Hsin <br/>
+		孫文信 <br/>
     </td>
 <td>
     	3
@@ -2251,40 +2251,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">MonABC/IL-111<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26036&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26036&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26036&outline=26036&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26036&outline=26036&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26037<br />OS7125-*</td>
-<td>Optoelectronics of Solar Cell
+<td>太陽能光電
     
     <br />
-		<span class="engclass">太陽能光電</span>
+		<span class="engclass">Optoelectronics of Solar Cell</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Jeng-Yang <br/>
+		張正陽 <br/>
     </td>
 <td>
     	3
@@ -2293,41 +2293,41 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed234/IL-116<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26037&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26037&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26037&outline=26037&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26037&outline=26037&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26038<br />OS7127-*</td>
-<td>Optical Thin Film Filter Design
+<td>光學薄膜濾光片設計
     
     <br />
-		<span class="engclass">光學薄膜濾光片設計</span>
+		<span class="engclass">Optical Thin Film Filter Design</span>
         
         <span class="notice"><br />上課地點：薄膜技術中心教室</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lee, Cheng-Chung <br/>Chen, Sheng-Hui <br/>
+		李正中 <br/>陳昇暉 <br/>
     </td>
 <td>
     	3
@@ -2336,40 +2336,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed678/IL-111<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26038&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26038&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26038&outline=26038&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26038&outline=26038&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26039<br />OS7135-*</td>
-<td>Advanced Topics of Nitride-Base Optical-Electro Devices
+<td>高等氮化物光電元件專題
     
     <br />
-		<span class="engclass">高等氮化物光電元件專題</span>
+		<span class="engclass">Advanced Topics of Nitride-Base Optical-Electro Devices</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lai,Kun-Yu <br/>
+		賴昆佑 <br/>
     </td>
 <td>
     	2
@@ -2378,40 +2378,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Wed56/IL-112<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26039&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26039&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26039&outline=26039&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26039&outline=26039&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26040<br />OS7142-*</td>
-<td>Special Topics in Biomedical Instrumentation
+<td>生醫檢測專題
     
     <br />
-		<span class="engclass">生醫檢測專題</span>
+		<span class="engclass">Special Topics in Biomedical Instrumentation</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Yi-Chun <br/>
+		陳怡君 <br/>
     </td>
 <td>
     	3
@@ -2420,41 +2420,41 @@ Online user: 32&nbsp;|
 		<span class="classtime">Thu789/IL-111<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26040&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26040&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26040&outline=26040&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26040&outline=26040&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26041<br />OS7147-*</td>
-<td>Diffraction Effects of Alienations
-    <span class="notice">[Course Cancelled]</span>
+<td>像差繞射光學
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">像差繞射光學</span>
+		<span class="engclass">Diffraction Effects of Alienations</span>
         
         <span class="notice"><br />12/5~12/30短期集中上課、時間及地點請洽系辦</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Virendra Nath Mahajan <br/>
+		馬哈俊 <br/>
     </td>
 <td>
     	1
@@ -2463,40 +2463,40 @@ Online user: 32&nbsp;|
 		<span class="classtime"><br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26041&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26041&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26041&outline=26041&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26041&outline=26041&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26042<br />OS7158-*</td>
-<td>Introduction of organic optoelectronics
+<td>有機光電導論
     
     <br />
-		<span class="engclass">有機光電導論</span>
+		<span class="engclass">Introduction of organic optoelectronics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang,Jui-Fen <br/>
+		張瑞芬 <br/>
     </td>
 <td>
     	3
@@ -2505,40 +2505,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon789/IL-112<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26042&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26042&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26042&outline=26042&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26042&outline=26042&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>26043<br />OS7160-*</td>
-<td>Physical Foundations of Semiconductor Optoelectronics
+<td>光電半導體物理基礎
     
     <br />
-		<span class="engclass">光電半導體物理基礎</span>
+		<span class="engclass">Physical Foundations of Semiconductor Optoelectronics</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Yin-Jung <br/>
+		張殷榮 <br/>
     </td>
 <td>
     	3
@@ -2547,40 +2547,40 @@ Online user: 32&nbsp;|
 		<span class="classtime">Mon4/IL-111<br/>Thu34/IL-111<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26043&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26043&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26043&outline=26043&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26043&outline=26043&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>26044<br />OS7165-*</td>
-<td>Introduction of Light Emitting Diode
-    <span class="notice">[Course Cancelled]</span>
+<td>發光二極體導論
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">發光二極體導論</span>
+		<span class="engclass">Introduction of Light Emitting Diode</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chi, Gou-Chung <br/>
+		紀國鐘 <br/>
     </td>
 <td>
     	3
@@ -2589,23 +2589,23 @@ Online user: 32&nbsp;|
 		<span class="classtime">Fri345/IL-112<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26044&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=26044&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26044&outline=26044&semester=1031');">Syllabus</a>
-    </td></tr></tbody></table><div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=20&amp;selectDept=&amp;week=1" title="Go to page 20">20</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1" title="Go to page 21">21</a>, <strong>22</strong>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1" title="Go to page 23">23</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=24&amp;selectDept=&amp;week=1" title="Go to page 24">24</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=25&amp;selectDept=&amp;week=1" title="Go to page 25">25</a><a href=/Course/main/query/byKeywords;jsessionid=5B35CF48FE8FB107B70232A2576D7EAC?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=26044&outline=26044&semester=1031');">課程綱要</a>
+    </td></tr></tbody></table><div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=20&amp;selectDept=&amp;week=1" title="Go to page 20">20</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=21&amp;selectDept=&amp;week=1" title="Go to page 21">21</a>, <strong>22</strong>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1" title="Go to page 23">23</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=24&amp;selectDept=&amp;week=1" title="Go to page 24">24</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=25&amp;selectDept=&amp;week=1" title="Go to page 25">25</a><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=23&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
 
 
 <br/>
@@ -2623,7 +2623,7 @@ Online user: 32&nbsp;|
 
 <div id="content_footer"></div>
 <div id="footer">
-	<p align="center">Address: No.300, Jhongda Rd., Jhongli City, Taoyuan County 32001, Taiwan (R.O.C.)  TEL:+886-3-4227151 Copyright: National Central University. All Rights Reserved </p>
+	<p align="center">地址: (32001)桃園縣中壢市五權里2鄰中大路300號 電話: 03-4227151 版權所有: 國立中央大學 </p>
 </div>
 </div>	<!-- end of container	-->
 <!-- 遮罩 -->

@@ -14,12 +14,12 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>New Course Schedule Planning System</title>
+<title>新選課登記系統</title>
 
 <script type="text/javascript">
 	var	baseDir = '/Course';
 	var basedir = baseDir;
-	var language = '1';
+	var language = '0';
 	var currentStage = 'PRINT_COURSE_TERMINATION';
 </script>
 
@@ -45,8 +45,8 @@
 <!--<script type="text/javascript" src="/Course/js/menu_core.js"></script>-->
 
 	
+		<script type="text/javascript" src="/Course/main/support/menu_core.js"></script>
 	
-		<script type="text/javascript" src="/Course/main/support/menu_core_en.js"></script>
 	
 
 
@@ -196,7 +196,7 @@ function checkData(){
 	
 
 	
-	<a class="intro" href="/Course/main/lang">中文</a>&nbsp;|
+	<a class="intro" href="/Course/main/lang">English</a>&nbsp;|
 	
 
 	
@@ -206,13 +206,13 @@ function checkData(){
 	
 
 	
-	<a class="intro" href="/Course/main/about">About</a>&nbsp;|
+	<a class="intro" href="/Course/main/about">關於本系統</a>&nbsp;|
 	
 
 	
 
 	
-	<a class="intro" href="/Course/main/manual">Manual</a>&nbsp;|
+	<a class="intro" href="/Course/main/manual">使用手冊</a>&nbsp;|
 	
 
 <!---->
@@ -222,10 +222,10 @@ function checkData(){
 <span class="intro_banner">
 1032 | 
 
-Online user: 26&nbsp;|
+線上人數: 9&nbsp;|
 </span><br />
 <span class="intro_banner">
-[ Print Course Termination Online ]
+[ 線上列印停修單階段 ]
 </span>
 
 	</div>
@@ -239,7 +239,7 @@ Online user: 26&nbsp;|
 						
 						
 						
-							<td class="rootVoice {menu: 'menu_news'}">News and Updates</td>
+							<td class="rootVoice {menu: 'menu_news'}">相關資訊</td>
 						
 					
 				
@@ -249,7 +249,7 @@ Online user: 26&nbsp;|
 						
 						
 						
-							<td class="rootVoice {menu: 'menu_query'}">Search for Courses</td>
+							<td class="rootVoice {menu: 'menu_query'}">課程查詢</td>
 						
 					
 				
@@ -257,7 +257,7 @@ Online user: 26&nbsp;|
 				
 					
 						
-							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">Login System</td>
+							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">登入系統</td>
 						
 						
 						
@@ -281,40 +281,40 @@ Online user: 26&nbsp;|
 <div id="bread">
 <img src="/Course/image/breadcrumb_icon.gif" />
 <a href="/Course">Home</a> &gt;
-<a href="/Course/main">New Course Schedule Planning System</a>
+<a href="/Course/main">新選課登記系統</a>
 
 
 
 	
-	&gt; <a href="/Course/main/query">Search for Courses</a>
+	&gt; <a href="/Course/main/query">課程查詢</a>
 
 	
-	&gt; <a href="/Course/main/query/byKeywords">Search according to Keyword/Time/Departments</a>
+	&gt; <a href="/Course/main/query/byKeywords">依關鍵字/時間/開課單位查詢</a>
 
 </div>
     <div id="content_body">
        
 <!-- 如有選課問題，請看相關資訊 -->
-<font color=red>Any problems related to course registration, please refer to News and Updates</font><BR/>
+<font color=red>如有選課問題，請看相關資訊</font><BR/>
 
-<h1 align="center">Search according to Keyword / Time / Departments</h1><br />
+<h1 align="center">依關鍵字 / 時間 / 開課單位查詢</h1><br />
 
-<div align="center"><b><font color='red'>System Maintenance：07:00 ~ 09:00 everyday (unavailable for course selection during this time)</font></b></div>
+<div align="center"><b><font color='red'>系統維護時間：07:00 ~ 09:00 每天(此期間無法選課)</font></b></div>
 
 <br>
 <p></p>
 <form name="myform" action="/Course/main/query/byKeywords" method="post" >
 <table cellspacing="0" cellpadding="1" class="search_table" width="700px" align="center">
     <tr>
-			<th colspan="4"><strong>Select Academic Year and Semester</strong></th>
+			<th colspan="4"><strong>選擇學年期</strong></th>
   </tr>
 		<tr>
 			<td class="do">
-			Academic Year
+			學年度
 			</td>
 			<td>
 			<select id="year" name="year" onChange="checkYear()">
-				<option value="all">Select</option>
+				<option value="all">請選擇</option>
 				
 					
 				   <option selected VALUE='103'>103</option>
@@ -375,22 +375,22 @@ Online user: 26&nbsp;|
 				
 			</select>
           </td>
-          <td class="do">semester
+          <td class="do">學期
           </td>
           <td>
 			<select id="fall_spring" NAME="fall_spring" onChange="checkYear()">
-			<option selected VALUE="1">fall</option>
-			<option  VALUE="2">spring</option>
+			<option selected VALUE="1">上</option>
+			<option  VALUE="2">下</option>
 
 			</select>
             </td>
 		</tr>
 <tbody id="college_department">
 <tr>
-	<th colspan="4">Inquiry by Departments</th>
+	<th colspan="4">依開課單位查詢</th>
 </tr>
 <tr>
-	<td class="do">College / Department</td><td colspan="3">
+	<td class="do">學院 / 系所</td><td colspan="3">
 	<select id="selectDept" name="selectDept">
 
 	</select>
@@ -398,10 +398,10 @@ Online user: 26&nbsp;|
 </tr>
 </tbody>
 <tr>
-	<th colspan="4">Search with Keyword </th>
+	<th colspan="4">依照關鍵字查詢</th>
 </tr>
 <tr>
-	<td class="do">Course Name/Instructor's Name/Course Code/Serial Number Keyword</td>
+	<td class="do">課名/教師姓名/課號/流水號關鍵字</td>
 	<td colspan="3"><input type="text" size="50" id="keyword" name="keyword" value="" autocomplete="off" onKeyUp="updateList(this,'wordsList');"/>
 	    <div id="wordsList" class="auto_complete1" ></div>
     </td>
@@ -409,32 +409,32 @@ Online user: 26&nbsp;|
   
 <tbody id="time">
 <tr>
-	<th colspan="4">Search Course According to Time Slot</th>
+	<th colspan="4">查詢某段有哪些課</th>
 </tr>
 <tr>
-	<td class="do">Week</td>
+	<td class="do">星期</td>
 	<td><select name= "week" id="week">
-	<option value="">Select</option>
+	<option value="">請選擇</option>
     
-          <option  value="0">Sun</option>
+          <option  value="0">日</option>
     
-          <option  value="1">Mon</option>
+          <option  value="1">一</option>
     
-          <option  value="2">Tue</option>
+          <option  value="2">二</option>
     
-          <option  value="3">Wed</option>
+          <option  value="3">三</option>
     
-          <option  value="4">Thu</option>
+          <option  value="4">四</option>
     
-          <option  value="5">Fri</option>
+          <option  value="5">五</option>
     
-          <option  value="6">Sat</option>
+          <option  value="6">六</option>
     
     </select>
 	</td>
-	<td class="do">Class Section</td>
+	<td class="do">節次</td>
 	<td><select name= "day" id="day">
-		<option value="">Select</option>
+		<option value="">請選擇</option>
 		  
 		   <option  value="1">1</option>
 		  
@@ -474,7 +474,7 @@ Online user: 26&nbsp;|
 </tbody>
 <tr>
 	<td colspan="4" align="right">
-      <input  name="query" type="submit" value="Search" />
+      <input  name="query" type="submit" value="查詢" />
     </td>
 </tr>
 </table>
@@ -489,39 +489,39 @@ Online user: 26&nbsp;|
 
 
 
-<div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=12&amp;selectDept=&amp;week=1" title="Go to page 12">12</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=13&amp;selectDept=&amp;week=1" title="Go to page 13">13</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=14&amp;selectDept=&amp;week=1" title="Go to page 14">14</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1" title="Go to page 15">15</a>, <strong>16</strong>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1" title="Go to page 17">17</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a><a href=/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+<div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=12&amp;selectDept=&amp;week=1" title="Go to page 12">12</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=13&amp;selectDept=&amp;week=1" title="Go to page 13">13</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=14&amp;selectDept=&amp;week=1" title="Go to page 14">14</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1" title="Go to page 15">15</a>, <strong>16</strong>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1" title="Go to page 17">17</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
 <table id="item" cellpadding="1" class="t6" cellspacing="0">
 <thead>
 <tr>
-<th>Serial Number<br />Course Code - Class</th>
-<th>Course Name/Remark</th>
-<th>Instructor</th>
-<th>Credit</th>
-<th>Time/Building and Room Number</th>
-<th>Required or Elective</th>
-<th>Whole Year or Semester</th>
-<th>Maximum Number</th>
-<th>Assignment Criteria</th>
-<th>Syllabus</th></tr></thead>
+<th>流水號<br />課號-班別</th>
+<th>課程名稱/備註</th>
+<th>授課教師</th>
+<th>學分</th>
+<th>時間/教室</th>
+<th>選修別</th>
+<th>全/半</th>
+<th>人數限制</th>
+<th>分發條件</th>
+<th>課程綱要</th></tr></thead>
 <tbody>
 <tr class="odd">
 <td>21006<br />MA1001-7</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="notice"><br />暑期預修課程上課期間：7/1-8/21；上課教室：綜教館O-114</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Nhieu, Duy-Minh <br/>
+		饒維明 <br/>
     </td>
 <td>
     	4
@@ -530,10 +530,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Sat345/O-114<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -542,29 +542,29 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21006&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21006&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21006&outline=21006&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21006&outline=21006&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21007<br />MA1002-*</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="notice"><br />授課內容為「下學期微積分」，以「參與暑期預修微積分課程的學生優先」；並於開學第一次上課時間拿密碼卡加選，同時一併辦理課程抵修</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lin, Chin-Yuan <br/>
+		林金源 <br/>
     </td>
 <td>
     	4
@@ -573,10 +573,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue12/IL-113<br/>Thu34/IL-113<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -585,28 +585,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21007&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21007&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21007&outline=21007&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21007&outline=21007&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21008<br />MA1003-A</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Hsu, Yu-Sheng <br/>
+		許玉生 <br/>
     </td>
 <td>
     	3
@@ -615,10 +615,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue12/H2-206<br/>Thu34/H2-206<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -627,28 +627,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21008&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21008&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21008&outline=21008&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21008&outline=21008&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21009<br />MA1003-B</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Huang,Rung-Tzung <br/>
+		黃榮宗 <br/>
     </td>
 <td>
     	3
@@ -657,10 +657,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue12/S-112<br/>Thu34/S-112<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -669,28 +669,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21009&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21009&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21009&outline=21009&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21009&outline=21009&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21010<br />MA1003-C</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lin, Chin-Cheng <br/>
+		林欽誠 <br/>
     </td>
 <td>
     	3
@@ -699,10 +699,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/O-122<br/>Wed34/O-122<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -711,28 +711,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21010&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21010&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21010&outline=21010&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21010&outline=21010&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21011<br />MA1003-D</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Hsiao, Chia-Chang <br/>
+		蕭嘉璋 <br/>
     </td>
 <td>
     	3
@@ -741,10 +741,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/O-114<br/>Wed34/O-114<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -753,28 +753,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21011&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21011&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21011&outline=21011&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21011&outline=21011&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21012<br />MA1003-E</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liaw, Sheng-Chyang <br/>
+		廖勝強 <br/>
     </td>
 <td>
     	3
@@ -783,10 +783,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/M-116<br/>Wed34/M-116<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -795,28 +795,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21012&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21012&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21012&outline=21012&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21012&outline=21012&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21013<br />MA1003-F</td>
-<td>Calculus
-    <span class="notice">[Course Cancelled]</span>
+<td>微積分
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lin, Ying Chieh <br/>
+		林英杰 <br/>
     </td>
 <td>
     	3
@@ -825,10 +825,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/*-***<br/>Wed34/*-***<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -837,28 +837,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21013&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21013&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21013&outline=21013&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21013&outline=21013&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21014<br />MA1003-G</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lee, Ming-Yi <br/>
+		李明憶 <br/>
     </td>
 <td>
     	3
@@ -867,10 +867,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/E1-121<br/>Wed34/E1-121<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -879,28 +879,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21014&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21014&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21014&outline=21014&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21014&outline=21014&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21015<br />MA1003-H</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Fang,Xiang <br/>
+		方向 <br/>
     </td>
 <td>
     	3
@@ -909,10 +909,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/E6-A204<br/>Wed34/E6-A204<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -921,28 +921,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21015&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21015&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21015&outline=21015&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21015&outline=21015&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21016<br />MA1003-I</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Hung-Yih <br/>
+		陳弘毅 <br/>
     </td>
 <td>
     	3
@@ -951,10 +951,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/E1-109<br/>Wed34/E1-109<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -963,29 +963,29 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21016&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21016&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21016&outline=21016&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21016&outline=21016&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21017<br />MA1004-*</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="notice"><br />授課內容為「下學期微積分」，以「參與暑期預修微積分課程的學生優先」；並於開學第一次上課時間拿密碼卡加選，同時一併辦理課程抵修</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lin, Chin-Yuan <br/>
+		林金源 <br/>
     </td>
 <td>
     	3
@@ -994,10 +994,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon56/E2-129<br/>Wed34/E2-220<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -1006,28 +1006,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21017&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21017&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21017&outline=21017&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21017&outline=21017&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21018<br />MA1005-A</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yu, Jenn-Hwa <br/>
+		于振華 <br/>
     </td>
 <td>
     	3
@@ -1036,10 +1036,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/I1-005<br/>Thu56/I1-005<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -1048,28 +1048,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21018&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21018&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21018&outline=21018&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21018&outline=21018&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21019<br />MA1005-B</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jui-Hsin <br/>
+		陳瑞興 <br/>
     </td>
 <td>
     	3
@@ -1078,10 +1078,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/M-116<br/>Thu56/M-116<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -1090,28 +1090,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21019&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21019&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21019&outline=21019&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21019&outline=21019&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21020<br />MA1005-C</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shiu, Shang-Yuan <br/>
+		須上苑 <br/>
     </td>
 <td>
     	3
@@ -1120,10 +1120,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/I1-304<br/>Thu56/I1-304<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -1132,28 +1132,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21020&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21020&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21020&outline=21020&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21020&outline=21020&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21021<br />MA1005-D</td>
-<td>Calculus
+<td>微積分
     
     <br />
-		<span class="engclass">微積分</span>
+		<span class="engclass">Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen,Sy-Mien <br/>
+		陳思勉 <br/>
     </td>
 <td>
     	3
@@ -1162,10 +1162,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/I1-105<br/>Thu56/I1-105<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Full
+    	全
     </td>
 <td>
     	
@@ -1174,28 +1174,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21021&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21021&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21021&outline=21021&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21021&outline=21021&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21022<br />MA1009-*</td>
-<td>Calculus Teaching
+<td>微積分教學專題
     
     <br />
-		<span class="engclass">微積分教學專題</span>
+		<span class="engclass">Calculus Teaching</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Rau, Re-Bin <br/>Hsiao, Chia-Chang <br/>Chao, I-Feng <br/>
+		饒瑞彬 <br/>蕭嘉璋 <br/>趙一峰 <br/>
     </td>
 <td>
     	0
@@ -1204,40 +1204,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Fri789/M-218<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21022&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21022&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21022&outline=21022&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21022&outline=21022&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21023<br />MA1013-A</td>
-<td>Introduction to Computer I 
+<td>計算機概論I
     
     <br />
-		<span class="engclass">計算機概論I</span>
+		<span class="engclass">Introduction to Computer I </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yen,Chien-Chang <br/>
+		嚴健彰 <br/>
     </td>
 <td>
     	3
@@ -1246,10 +1246,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon678/M-218<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1258,28 +1258,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21023&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21023&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21023&outline=21023&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21023&outline=21023&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21024<br />MA1013-B</td>
-<td>Introduction to Computer I 
+<td>計算機概論I
     
     <br />
-		<span class="engclass">計算機概論I</span>
+		<span class="engclass">Introduction to Computer I </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Wu, Wei-Han <br/>
+		吳維漢 <br/>
     </td>
 <td>
     	3
@@ -1288,10 +1288,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue789/M-201-4<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1300,28 +1300,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21024&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21024&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21024&outline=21024&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21024&outline=21024&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21025<br />MA2007-A</td>
-<td>Linear AlgebraⅠ
+<td>線性代數Ⅰ
     
     <br />
-		<span class="engclass">線性代數Ⅰ</span>
+		<span class="engclass">Linear AlgebraⅠ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Yen-Mei J. <br/>
+		陳燕美 <br/>
     </td>
 <td>
     	3
@@ -1330,10 +1330,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/M-429<br/>Thu56/M-429<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1342,28 +1342,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21025&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21025&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21025&outline=21025&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21025&outline=21025&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21026<br />MA2007-B</td>
-<td>Linear AlgebraⅠ
+<td>線性代數Ⅰ
     
     <br />
-		<span class="engclass">線性代數Ⅰ</span>
+		<span class="engclass">Linear AlgebraⅠ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Leu, Ming-Guang <br/>
+		呂明光 <br/>
     </td>
 <td>
     	3
@@ -1372,10 +1372,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue56/M-116<br/>Thu78/M-116<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1384,28 +1384,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21026&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21026&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21026&outline=21026&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21026&outline=21026&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21027<br />MA2025-A</td>
-<td>Algebra Ⅰ 
+<td>代數Ⅰ
     
     <br />
-		<span class="engclass">代數Ⅰ</span>
+		<span class="engclass">Algebra Ⅰ </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jheng-Jie <br/>
+		陳正傑 <br/>
     </td>
 <td>
     	3
@@ -1414,10 +1414,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon78/M-327<br/>Wed2/M-327<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1426,28 +1426,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21027&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21027&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21027&outline=21027&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21027&outline=21027&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21028<br />MA2025-B</td>
-<td>Algebra Ⅰ 
+<td>代數Ⅰ
     
     <br />
-		<span class="engclass">代數Ⅰ</span>
+		<span class="engclass">Algebra Ⅰ </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jheng-Jie <br/>
+		陳正傑 <br/>
     </td>
 <td>
     	3
@@ -1456,10 +1456,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon3/M-328<br/>Wed78/M-328<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1468,28 +1468,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21028&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21028&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21028&outline=21028&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21028&outline=21028&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21029<br />MA2041-A</td>
-<td>Elementary Differential Equations I
+<td>微分方程 I
     
     <br />
-		<span class="engclass">微分方程 I</span>
+		<span class="engclass">Elementary Differential Equations I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Hsu, Cheng-Hsiung <br/>
+		許正雄 <br/>
     </td>
 <td>
     	3
@@ -1498,10 +1498,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon6/M-328<br/>Wed34/M-328<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1510,28 +1510,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21029&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21029&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21029&outline=21029&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21029&outline=21029&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21030<br />MA2041-B</td>
-<td>Elementary Differential Equations I
+<td>微分方程 I
     
     <br />
-		<span class="engclass">微分方程 I</span>
+		<span class="engclass">Elementary Differential Equations I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Hong, John M. <br/>
+		洪盟凱 <br/>
     </td>
 <td>
     	3
@@ -1540,10 +1540,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon6/M-219<br/>Wed34/M-219<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1552,28 +1552,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21030&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21030&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21030&outline=21030&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21030&outline=21030&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21031<br />MA2045-A</td>
-<td>Advanced Calculus Ⅰ
+<td>高等微積分Ⅰ
     
     <br />
-		<span class="engclass">高等微積分Ⅰ</span>
+		<span class="engclass">Advanced Calculus Ⅰ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Nhieu, Duy-Minh <br/>
+		饒維明 <br/>
     </td>
 <td>
     	4
@@ -1582,10 +1582,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/M-219<br/>Thu34/M-219<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1594,28 +1594,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21031&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21031&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21031&outline=21031&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21031&outline=21031&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21032<br />MA2045-B</td>
-<td>Advanced Calculus Ⅰ
+<td>高等微積分Ⅰ
     
     <br />
-		<span class="engclass">高等微積分Ⅰ</span>
+		<span class="engclass">Advanced Calculus Ⅰ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Cheng, Ching-Hsiao <br/>
+		鄭經 <br/>
     </td>
 <td>
     	4
@@ -1624,10 +1624,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/M-327<br/>Thu34/M-327<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1636,28 +1636,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21032&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21032&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21032&outline=21032&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21032&outline=21032&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21033<br />MA2045-C</td>
-<td>Advanced Calculus Ⅰ
+<td>高等微積分Ⅰ
     
     <br />
-		<span class="engclass">高等微積分Ⅰ</span>
+		<span class="engclass">Advanced Calculus Ⅰ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Gau, Hwa-Long <br/>
+		高華隆 <br/>
     </td>
 <td>
     	4
@@ -1666,10 +1666,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/M-328<br/>Thu34/M-328<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1678,28 +1678,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21033&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21033&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21033&outline=21033&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21033&outline=21033&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21034<br />MA2059-*</td>
-<td>Mathematics with Applications
+<td>數學應用
     
     <br />
-		<span class="engclass">數學應用</span>
+		<span class="engclass">Mathematics with Applications</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yeh, Hong-Gwa <br/>
+		葉鴻國 <br/>
     </td>
 <td>
     	2
@@ -1708,10 +1708,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon34/M-327<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1720,28 +1720,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21034&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21034&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21034&outline=21034&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21034&outline=21034&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21035<br />MA3003-*</td>
-<td>Topology 
+<td>拓樸學
     
     <br />
-		<span class="engclass">拓樸學</span>
+		<span class="engclass">Topology </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lin, Chin-Yuan <br/>
+		林金源 <br/>
     </td>
 <td>
     	3
@@ -1750,10 +1750,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon12/M-429<br/>Tue5/M-429<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1762,28 +1762,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21035&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21035&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21035&outline=21035&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21035&outline=21035&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21036<br />MA3015-*</td>
-<td>Complex Analysis I 
+<td>複變函數論 I
     
     <br />
-		<span class="engclass">複變函數論 I</span>
+		<span class="engclass">Complex Analysis I </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Huang,Rung-Tzung <br/>
+		黃榮宗 <br/>
     </td>
 <td>
     	3
@@ -1792,10 +1792,10 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon6/M-327<br/>Wed78/M-327<br/> </span>
     </td>
 <td>
-    	Required
+    	必修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1804,28 +1804,28 @@ Online user: 26&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21036&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21036&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21036&outline=21036&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21036&outline=21036&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21037<br />MA3025-*</td>
-<td>Mathematical Statistics I
+<td>數理統計Ⅰ
     
     <br />
-		<span class="engclass">數理統計Ⅰ</span>
+		<span class="engclass">Mathematical Statistics I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Hsu, Yu-Sheng <br/>
+		許玉生 <br/>
     </td>
 <td>
     	3
@@ -1834,40 +1834,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Thu678/M-328<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21037&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21037&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21037&outline=21037&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21037&outline=21037&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21038<br />MA3026-*</td>
-<td>Mathematical Statistics Ⅱ
+<td>數理統計Ⅱ
     
     <br />
-		<span class="engclass">數理統計Ⅱ</span>
+		<span class="engclass">Mathematical Statistics Ⅱ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Rau, Re-Bin <br/>
+		饒瑞彬 <br/>
     </td>
 <td>
     	3
@@ -1876,40 +1876,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Wed678/M-218<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21038&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21038&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21038&outline=21038&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21038&outline=21038&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21039<br />MA3034-*</td>
-<td>Discrete Mathematics I 
+<td>離散數學  Ｉ
     
     <br />
-		<span class="engclass">離散數學  Ｉ</span>
+		<span class="engclass">Discrete Mathematics I </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liaw, Sheng-Chyang <br/>
+		廖勝強 <br/>
     </td>
 <td>
     	3
@@ -1918,40 +1918,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Thu234/M-430<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21039&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21039&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21039&outline=21039&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21039&outline=21039&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21040<br />MA3049-*</td>
-<td>Approximation Theory I
+<td>近似理論I
     
     <br />
-		<span class="engclass">近似理論I</span>
+		<span class="engclass">Approximation Theory I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Jha, Shing-Whu <br/>
+		賈陘夫 <br/>
     </td>
 <td>
     	3
@@ -1960,40 +1960,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/M-430<br/>Wed6/M-430<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21040&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21040&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21040&outline=21040&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21040&outline=21040&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21041<br />MA3066-*</td>
-<td>Optimization Problems:Algorithm Design and Applications
+<td>最佳化問題演算法與應用
     
     <br />
-		<span class="engclass">最佳化問題演算法與應用</span>
+		<span class="engclass">Optimization Problems:Algorithm Design and Applications</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Hwang, Feng-Nan <br/>
+		黃楓南 <br/>
     </td>
 <td>
     	3
@@ -2002,40 +2002,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon78/M-429<br/>Wed5/M-429<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21041&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21041&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21041&outline=21041&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21041&outline=21041&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21042<br />MA3071-*</td>
-<td>Applied ProbabilityⅠ
+<td>應用機率Ⅰ
     
     <br />
-		<span class="engclass">應用機率Ⅰ</span>
+		<span class="engclass">Applied ProbabilityⅠ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chiang,Tzuu-Shuh <br/>
+		姜祖恕 <br/>
     </td>
 <td>
     	3
@@ -2044,40 +2044,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Fri678/M-429<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21042&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21042&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21042&outline=21042&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21042&outline=21042&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21043<br />MA4003-*</td>
-<td>Seminar in Analysis I
+<td>分析研討  Ｉ
     
     <br />
-		<span class="engclass">分析研討  Ｉ</span>
+		<span class="engclass">Seminar in Analysis I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jui-Hsin <br/>
+		陳瑞興 <br/>
     </td>
 <td>
     	3
@@ -2086,40 +2086,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon789/M-219<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21043&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21043&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21043&outline=21043&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21043&outline=21043&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21044<br />MA4017-*</td>
-<td>Stochastic SimulationⅠ
+<td>隨機模擬Ⅰ
     
     <br />
-		<span class="engclass">隨機模擬Ⅰ</span>
+		<span class="engclass">Stochastic SimulationⅠ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yu, Jenn-Hwa <br/>
+		于振華 <br/>
     </td>
 <td>
     	3
@@ -2128,40 +2128,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue12/M-116<br/>Thu1/M-116<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21044&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21044&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21044&outline=21044&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21044&outline=21044&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21045<br />MA4071-B</td>
-<td>Special Topics Study I
+<td>專題研習Ⅰ
     
     <br />
-		<span class="engclass">專題研習Ⅰ</span>
+		<span class="engclass">Special Topics Study I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Wu, Wei-Han <br/>
+		吳維漢 <br/>
     </td>
 <td>
     	1
@@ -2170,40 +2170,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon1/M-201-4<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21045&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21045&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21045&outline=21045&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21045&outline=21045&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21046<br />MA4097-*</td>
-<td>Mathematics of Insurance I
+<td>保險數學  Ｉ
     
     <br />
-		<span class="engclass">保險數學  Ｉ</span>
+		<span class="engclass">Mathematics of Insurance I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chao, I-Feng <br/>
+		趙一峰 <br/>
     </td>
 <td>
     	3
@@ -2212,40 +2212,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue9/M-430<br/>Thu67/M-430<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21046&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21046&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21046&outline=21046&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21046&outline=21046&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21047<br />MA5013-*</td>
-<td>Differential Geometry I
+<td>微分幾何I
     
     <br />
-		<span class="engclass">微分幾何I</span>
+		<span class="engclass">Differential Geometry I</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chiu, Hung-Lin <br/>
+		邱鴻麟 <br/>
     </td>
 <td>
     	3
@@ -2254,41 +2254,41 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon6/M-430<br/>Wed34/M-430<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21047&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21047&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21047&outline=21047&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21047&outline=21047&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21048<br />MA5021-*</td>
-<td>Computer Programming and Application
+<td>程式語言及其應用
     
     <br />
-		<span class="engclass">程式語言及其應用</span>
+		<span class="engclass">Computer Programming and Application</span>
         
         <span class="notice"><br />大學部學生選修及格後請辦理抵免</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Wu, Wei-Han <br/>
+		吳維漢 <br/>
     </td>
 <td>
     	3
@@ -2297,40 +2297,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Fri234/M-429<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21048&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21048&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21048&outline=21048&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21048&outline=21048&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21049<br />MA5025-*</td>
-<td>Stochastic Calculus
+<td>隨機微積分
     
     <br />
-		<span class="engclass">隨機微積分</span>
+		<span class="engclass">Stochastic Calculus</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Sheu, Shuenn-Jyi <br/>
+		許順吉 <br/>
     </td>
 <td>
     	3
@@ -2339,40 +2339,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue78/M-412-2<br/>Wed6/M-412-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21049&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21049&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21049&outline=21049&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21049&outline=21049&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21050<br />MA6043-*</td>
-<td>Graph Theory I 
+<td>圖論 I
     
     <br />
-		<span class="engclass">圖論 I</span>
+		<span class="engclass">Graph Theory I </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yeh, Hong-Gwa <br/>
+		葉鴻國 <br/>
     </td>
 <td>
     	3
@@ -2381,40 +2381,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue6/M-429<br/>Wed34/M-429<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21050&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21050&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21050&outline=21050&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21050&outline=21050&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21051<br />MA6059-*</td>
-<td>Probability Theory I 
+<td>機率論 I
     
     <br />
-		<span class="engclass">機率論 I</span>
+		<span class="engclass">Probability Theory I </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shiu, Shang-Yuan <br/>
+		須上苑 <br/>
     </td>
 <td>
     	3
@@ -2423,40 +2423,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue56/M-430<br/>ThuZ/M-430<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21051&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21051&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21051&outline=21051&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21051&outline=21051&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21052<br />MA6067-*</td>
-<td>Topics in Combinatorics I 
+<td>組合學特論  Ｉ
     
     <br />
-		<span class="engclass">組合學特論  Ｉ</span>
+		<span class="engclass">Topics in Combinatorics I </span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shieh, Tsong-Chih <br/>
+		謝聰智 <br/>
     </td>
 <td>
     	3
@@ -2465,40 +2465,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon5/M-327<br/>Wed56/M-327<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21052&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21052&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21052&outline=21052&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21052&outline=21052&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21053<br />MA6075-*</td>
-<td>Seminar on Partial Differential EquationsⅠ
-    <span class="notice">[Course Cancelled]</span>
+<td>偏微分書報討論Ⅰ
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">偏微分書報討論Ⅰ</span>
+		<span class="engclass">Seminar on Partial Differential EquationsⅠ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Lin, Ying Chieh <br/>
+		林英杰 <br/>
     </td>
 <td>
     	3
@@ -2507,41 +2507,41 @@ Online user: 26&nbsp;|
 		<span class="classtime">Tue1/M-430<br/>Fri12/M-430<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21053&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21053&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21053&outline=21053&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21053&outline=21053&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>21054<br />MA6091-*</td>
-<td>Coding Theory Ｉ 
+<td>編碼學  Ｉ
     
     <br />
-		<span class="engclass">編碼學  Ｉ</span>
+		<span class="engclass">Coding Theory Ｉ </span>
         
         <span class="notice"><br />大學部學生可選修，預備知識僅大一線性代數</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Leu, Ming-Guang <br/>
+		呂明光 <br/>
     </td>
 <td>
     	3
@@ -2550,40 +2550,40 @@ Online user: 26&nbsp;|
 		<span class="classtime">Mon78/M-328<br/>Wed6/M-328<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21054&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21054&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21054&outline=21054&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21054&outline=21054&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>21055<br />MA6102-*</td>
-<td>Partial Differential EquationsⅡ
-    <span class="notice">[Course Cancelled]</span>
+<td>偏微分方程Ⅱ
+    <span class="notice">[已停開]</span>
     <br />
-		<span class="engclass">偏微分方程Ⅱ</span>
+		<span class="engclass">Partial Differential EquationsⅡ</span>
         
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Hong, John M. <br/>
+		洪盟凱 <br/>
     </td>
 <td>
     	3
@@ -2592,23 +2592,23 @@ Online user: 26&nbsp;|
 		<span class="classtime">TueZ56/M-327<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
-    		Unlimited
+    		無
     		
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21055&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=21055&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21055&outline=21055&semester=1031');">Syllabus</a>
-    </td></tr></tbody></table><div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=12&amp;selectDept=&amp;week=1" title="Go to page 12">12</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=13&amp;selectDept=&amp;week=1" title="Go to page 13">13</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=14&amp;selectDept=&amp;week=1" title="Go to page 14">14</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1" title="Go to page 15">15</a>, <strong>16</strong>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1" title="Go to page 17">17</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a><a href=/Course/main/query/byKeywords;jsessionid=5B8C19A2750FA3064DF6DA58D95200D8?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=21055&outline=21055&semester=1031');">課程綱要</a>
+    </td></tr></tbody></table><div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=12&amp;selectDept=&amp;week=1" title="Go to page 12">12</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=13&amp;selectDept=&amp;week=1" title="Go to page 13">13</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=14&amp;selectDept=&amp;week=1" title="Go to page 14">14</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=15&amp;selectDept=&amp;week=1" title="Go to page 15">15</a>, <strong>16</strong>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1" title="Go to page 17">17</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=18&amp;selectDept=&amp;week=1" title="Go to page 18">18</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=19&amp;selectDept=&amp;week=1" title="Go to page 19">19</a><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=17&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
 
 
 <br/>
@@ -2626,7 +2626,7 @@ Online user: 26&nbsp;|
 
 <div id="content_footer"></div>
 <div id="footer">
-	<p align="center">Address: No.300, Jhongda Rd., Jhongli City, Taoyuan County 32001, Taiwan (R.O.C.)  TEL:+886-3-4227151 Copyright: National Central University. All Rights Reserved </p>
+	<p align="center">地址: (32001)桃園縣中壢市五權里2鄰中大路300號 電話: 03-4227151 版權所有: 國立中央大學 </p>
 </div>
 </div>	<!-- end of container	-->
 <!-- 遮罩 -->

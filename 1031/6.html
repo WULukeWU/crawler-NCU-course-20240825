@@ -14,12 +14,12 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>New Course Schedule Planning System</title>
+<title>新選課登記系統</title>
 
 <script type="text/javascript">
 	var	baseDir = '/Course';
 	var basedir = baseDir;
-	var language = '1';
+	var language = '0';
 	var currentStage = 'PRINT_COURSE_TERMINATION';
 </script>
 
@@ -45,8 +45,8 @@
 <!--<script type="text/javascript" src="/Course/js/menu_core.js"></script>-->
 
 	
+		<script type="text/javascript" src="/Course/main/support/menu_core.js"></script>
 	
-		<script type="text/javascript" src="/Course/main/support/menu_core_en.js"></script>
 	
 
 
@@ -196,7 +196,7 @@ function checkData(){
 	
 
 	
-	<a class="intro" href="/Course/main/lang">中文</a>&nbsp;|
+	<a class="intro" href="/Course/main/lang">English</a>&nbsp;|
 	
 
 	
@@ -206,13 +206,13 @@ function checkData(){
 	
 
 	
-	<a class="intro" href="/Course/main/about">About</a>&nbsp;|
+	<a class="intro" href="/Course/main/about">關於本系統</a>&nbsp;|
 	
 
 	
 
 	
-	<a class="intro" href="/Course/main/manual">Manual</a>&nbsp;|
+	<a class="intro" href="/Course/main/manual">使用手冊</a>&nbsp;|
 	
 
 <!---->
@@ -222,10 +222,10 @@ function checkData(){
 <span class="intro_banner">
 1032 | 
 
-Online user: 16&nbsp;|
+線上人數: 9&nbsp;|
 </span><br />
 <span class="intro_banner">
-[ Print Course Termination Online ]
+[ 線上列印停修單階段 ]
 </span>
 
 	</div>
@@ -239,7 +239,7 @@ Online user: 16&nbsp;|
 						
 						
 						
-							<td class="rootVoice {menu: 'menu_news'}">News and Updates</td>
+							<td class="rootVoice {menu: 'menu_news'}">相關資訊</td>
 						
 					
 				
@@ -249,7 +249,7 @@ Online user: 16&nbsp;|
 						
 						
 						
-							<td class="rootVoice {menu: 'menu_query'}">Search for Courses</td>
+							<td class="rootVoice {menu: 'menu_query'}">課程查詢</td>
 						
 					
 				
@@ -257,7 +257,7 @@ Online user: 16&nbsp;|
 				
 					
 						
-							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">Login System</td>
+							<td class="rootVoice {menu: 'empty'}" onClick="document.location='/Course/main/login';">登入系統</td>
 						
 						
 						
@@ -281,40 +281,40 @@ Online user: 16&nbsp;|
 <div id="bread">
 <img src="/Course/image/breadcrumb_icon.gif" />
 <a href="/Course">Home</a> &gt;
-<a href="/Course/main">New Course Schedule Planning System</a>
+<a href="/Course/main">新選課登記系統</a>
 
 
 
 	
-	&gt; <a href="/Course/main/query">Search for Courses</a>
+	&gt; <a href="/Course/main/query">課程查詢</a>
 
 	
-	&gt; <a href="/Course/main/query/byKeywords">Search according to Keyword/Time/Departments</a>
+	&gt; <a href="/Course/main/query/byKeywords">依關鍵字/時間/開課單位查詢</a>
 
 </div>
     <div id="content_body">
        
 <!-- 如有選課問題，請看相關資訊 -->
-<font color=red>Any problems related to course registration, please refer to News and Updates</font><BR/>
+<font color=red>如有選課問題，請看相關資訊</font><BR/>
 
-<h1 align="center">Search according to Keyword / Time / Departments</h1><br />
+<h1 align="center">依關鍵字 / 時間 / 開課單位查詢</h1><br />
 
-<div align="center"><b><font color='red'>System Maintenance：07:00 ~ 09:00 everyday (unavailable for course selection during this time)</font></b></div>
+<div align="center"><b><font color='red'>系統維護時間：07:00 ~ 09:00 每天(此期間無法選課)</font></b></div>
 
 <br>
 <p></p>
 <form name="myform" action="/Course/main/query/byKeywords" method="post" >
 <table cellspacing="0" cellpadding="1" class="search_table" width="700px" align="center">
     <tr>
-			<th colspan="4"><strong>Select Academic Year and Semester</strong></th>
+			<th colspan="4"><strong>選擇學年期</strong></th>
   </tr>
 		<tr>
 			<td class="do">
-			Academic Year
+			學年度
 			</td>
 			<td>
 			<select id="year" name="year" onChange="checkYear()">
-				<option value="all">Select</option>
+				<option value="all">請選擇</option>
 				
 					
 				   <option selected VALUE='103'>103</option>
@@ -375,22 +375,22 @@ Online user: 16&nbsp;|
 				
 			</select>
           </td>
-          <td class="do">semester
+          <td class="do">學期
           </td>
           <td>
 			<select id="fall_spring" NAME="fall_spring" onChange="checkYear()">
-			<option selected VALUE="1">fall</option>
-			<option  VALUE="2">spring</option>
+			<option selected VALUE="1">上</option>
+			<option  VALUE="2">下</option>
 
 			</select>
             </td>
 		</tr>
 <tbody id="college_department">
 <tr>
-	<th colspan="4">Inquiry by Departments</th>
+	<th colspan="4">依開課單位查詢</th>
 </tr>
 <tr>
-	<td class="do">College / Department</td><td colspan="3">
+	<td class="do">學院 / 系所</td><td colspan="3">
 	<select id="selectDept" name="selectDept">
 
 	</select>
@@ -398,10 +398,10 @@ Online user: 16&nbsp;|
 </tr>
 </tbody>
 <tr>
-	<th colspan="4">Search with Keyword </th>
+	<th colspan="4">依照關鍵字查詢</th>
 </tr>
 <tr>
-	<td class="do">Course Name/Instructor's Name/Course Code/Serial Number Keyword</td>
+	<td class="do">課名/教師姓名/課號/流水號關鍵字</td>
 	<td colspan="3"><input type="text" size="50" id="keyword" name="keyword" value="" autocomplete="off" onKeyUp="updateList(this,'wordsList');"/>
 	    <div id="wordsList" class="auto_complete1" ></div>
     </td>
@@ -409,32 +409,32 @@ Online user: 16&nbsp;|
   
 <tbody id="time">
 <tr>
-	<th colspan="4">Search Course According to Time Slot</th>
+	<th colspan="4">查詢某段有哪些課</th>
 </tr>
 <tr>
-	<td class="do">Week</td>
+	<td class="do">星期</td>
 	<td><select name= "week" id="week">
-	<option value="">Select</option>
+	<option value="">請選擇</option>
     
-          <option  value="0">Sun</option>
+          <option  value="0">日</option>
     
-          <option  value="1">Mon</option>
+          <option  value="1">一</option>
     
-          <option  value="2">Tue</option>
+          <option  value="2">二</option>
     
-          <option  value="3">Wed</option>
+          <option  value="3">三</option>
     
-          <option  value="4">Thu</option>
+          <option  value="4">四</option>
     
-          <option  value="5">Fri</option>
+          <option  value="5">五</option>
     
-          <option  value="6">Sat</option>
+          <option  value="6">六</option>
     
     </select>
 	</td>
-	<td class="do">Class Section</td>
+	<td class="do">節次</td>
 	<td><select name= "day" id="day">
-		<option value="">Select</option>
+		<option value="">請選擇</option>
 		  
 		   <option  value="1">1</option>
 		  
@@ -474,7 +474,7 @@ Online user: 16&nbsp;|
 </tbody>
 <tr>
 	<td colspan="4" align="right">
-      <input  name="query" type="submit" value="Search" />
+      <input  name="query" type="submit" value="查詢" />
     </td>
 </tr>
 </table>
@@ -489,39 +489,39 @@ Online user: 16&nbsp;|
 
 
 
-<div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1" title="Go to page 2">2</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=3&amp;selectDept=&amp;week=1" title="Go to page 3">3</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=4&amp;selectDept=&amp;week=1" title="Go to page 4">4</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1" title="Go to page 5">5</a>, <strong>6</strong>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1" title="Go to page 7">7</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=8&amp;selectDept=&amp;week=1" title="Go to page 8">8</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=9&amp;selectDept=&amp;week=1" title="Go to page 9">9</a><a href=/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+<div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1" title="Go to page 2">2</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=3&amp;selectDept=&amp;week=1" title="Go to page 3">3</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=4&amp;selectDept=&amp;week=1" title="Go to page 4">4</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1" title="Go to page 5">5</a>, <strong>6</strong>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1" title="Go to page 7">7</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=8&amp;selectDept=&amp;week=1" title="Go to page 8">8</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=9&amp;selectDept=&amp;week=1" title="Go to page 9">9</a><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
 <table id="item" cellpadding="1" class="t6" cellspacing="0">
 <thead>
 <tr>
-<th>Serial Number<br />Course Code - Class</th>
-<th>Course Name/Remark</th>
-<th>Instructor</th>
-<th>Credit</th>
-<th>Time/Building and Room Number</th>
-<th>Required or Elective</th>
-<th>Whole Year or Semester</th>
-<th>Maximum Number</th>
-<th>Assignment Criteria</th>
-<th>Syllabus</th></tr></thead>
+<th>流水號<br />課號-班別</th>
+<th>課程名稱/備註</th>
+<th>授課教師</th>
+<th>學分</th>
+<th>時間/教室</th>
+<th>選修別</th>
+<th>全/半</th>
+<th>人數限制</th>
+<th>分發條件</th>
+<th>課程綱要</th></tr></thead>
 <tbody>
 <tr class="odd">
 <td>01150<br />PE4051-E</td>
-<td>Basketball I
+<td>籃球入門
     
     <br />
-		<span class="engclass">籃球入門</span>
+		<span class="engclass">Basketball I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過籃球入門之學生，與課號PE2051E同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Kuan-Gen <br/>
+		陳冠錦 <br/>
     </td>
 <td>
     	1
@@ -530,10 +530,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed7/*-籃        *<br/>Wed8/籃-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -542,29 +542,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1034&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1034&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01150&outline=1034&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01150&outline=1034&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01151<br />PE4071-A</td>
-<td>Volleyball I
+<td>排球入門
     
     <br />
-		<span class="engclass">排球入門</span>
+		<span class="engclass">Volleyball I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過排球入門之學生，與課號PE2071A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Cheng, Kuei-Chung <br/>
+		鄭貴中 <br/>
     </td>
 <td>
     	1
@@ -573,10 +573,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon5/*-排        *<br/>Mon6/排-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -585,29 +585,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1035&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1035&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01151&outline=1035&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01151&outline=1035&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01152<br />PE4071-B</td>
-<td>Volleyball I
+<td>排球入門
     
     <br />
-		<span class="engclass">排球入門</span>
+		<span class="engclass">Volleyball I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過排球入門之學生，與課號PE2071B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jenn-Dar <br/>
+		陳政達 <br/>
     </td>
 <td>
     	1
@@ -616,10 +616,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon7/*-排        *<br/>Mon8/排-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -628,29 +628,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1036&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1036&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01152&outline=1036&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01152&outline=1036&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01153<br />PE4071-C</td>
-<td>Volleyball I
+<td>排球入門
     
     <br />
-		<span class="engclass">排球入門</span>
+		<span class="engclass">Volleyball I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過排球入門之學生，與課號PE2071C同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Cheng, Kuei-Chung <br/>
+		鄭貴中 <br/>
     </td>
 <td>
     	1
@@ -659,10 +659,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue1/*-排        *<br/>Tue2/排-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -671,29 +671,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1037&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1037&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01153&outline=1037&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01153&outline=1037&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01154<br />PE4071-D</td>
-<td>Volleyball I
+<td>排球入門
     
     <br />
-		<span class="engclass">排球入門</span>
+		<span class="engclass">Volleyball I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過排球入門之學生，與課號PE2071D同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jenn-Dar <br/>
+		陳政達 <br/>
     </td>
 <td>
     	1
@@ -702,10 +702,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed7/*-排        *<br/>Wed8/排-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -714,29 +714,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1038&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1038&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01154&outline=1038&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01154&outline=1038&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01155<br />PE4071-E</td>
-<td>Volleyball I
+<td>排球入門
     
     <br />
-		<span class="engclass">排球入門</span>
+		<span class="engclass">Volleyball I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過排球入門之學生，與課號PE2071E同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jenn-Dar <br/>
+		陳政達 <br/>
     </td>
 <td>
     	1
@@ -745,10 +745,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Fri5/*-排        *<br/>Fri6/排-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -757,29 +757,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1039&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1039&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01155&outline=1039&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01155&outline=1039&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01156<br />PE4091-A</td>
-<td>Slow Pitch Softball
+<td>慢速壘球
     
     <br />
-		<span class="engclass">慢速壘球</span>
+		<span class="engclass">Slow Pitch Softball</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過慢速壘球之學生，與課號PE2091A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chiu, Wen-Sheng <br/>
+		邱文聲 <br/>
     </td>
 <td>
     	1
@@ -788,10 +788,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon7/*-壘球      *<br/>Mon8/壘球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -800,29 +800,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1040&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1040&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01156&outline=1040&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01156&outline=1040&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01157<br />PE4091-B</td>
-<td>Slow Pitch Softball
+<td>慢速壘球
     
     <br />
-		<span class="engclass">慢速壘球</span>
+		<span class="engclass">Slow Pitch Softball</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過慢速壘球之學生，與課號PE2091B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chiu, Wen-Sheng <br/>
+		邱文聲 <br/>
     </td>
 <td>
     	1
@@ -831,10 +831,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue7/*-壘球      *<br/>Tue8/壘球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -843,29 +843,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1041&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1041&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01157&outline=1041&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01157&outline=1041&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01158<br />PE4091-C</td>
-<td>Slow Pitch Softball
+<td>慢速壘球
     
     <br />
-		<span class="engclass">慢速壘球</span>
+		<span class="engclass">Slow Pitch Softball</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過慢速壘球之學生，與課號PE2091C同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chiu, Wen-Sheng <br/>
+		邱文聲 <br/>
     </td>
 <td>
     	1
@@ -874,10 +874,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed7/*-壘球      *<br/>Wed8/壘球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -886,29 +886,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1042&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1042&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01158&outline=1042&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01158&outline=1042&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01159<br />PE4101-A</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Huang, Ching-Wei <br/>
+		黃相瑋 <br/>
     </td>
 <td>
     	1
@@ -917,10 +917,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon34/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -929,29 +929,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1043&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1043&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01159&outline=1043&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01159&outline=1043&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01160<br />PE4101-B</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Jin-Tsung <br/>
+		楊熾增 <br/>
     </td>
 <td>
     	1
@@ -960,10 +960,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue56/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -972,29 +972,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1044&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1044&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01160&outline=1044&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01160&outline=1044&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01161<br />PE4101-C</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101C同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Jin-Tsung <br/>
+		楊熾增 <br/>
     </td>
 <td>
     	1
@@ -1003,10 +1003,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue78/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1015,29 +1015,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1045&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1045&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01161&outline=1045&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01161&outline=1045&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01162<br />PE4101-D</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101D同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Jin-Tsung <br/>
+		楊熾增 <br/>
     </td>
 <td>
     	1
@@ -1046,10 +1046,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed34/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1058,29 +1058,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1046&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1046&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01162&outline=1046&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01162&outline=1046&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01163<br />PE4101-E</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101E同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Jin-Tsung <br/>
+		楊熾增 <br/>
     </td>
 <td>
     	1
@@ -1089,10 +1089,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed56/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1101,29 +1101,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1047&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1047&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01163&outline=1047&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01163&outline=1047&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01164<br />PE4101-F</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101F同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Huang, Ching-Wei <br/>
+		黃相瑋 <br/>
     </td>
 <td>
     	1
@@ -1132,10 +1132,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed78/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1144,29 +1144,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1048&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1048&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01164&outline=1048&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01164&outline=1048&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01165<br />PE4101-G</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101G同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Jin-Tsung <br/>
+		楊熾增 <br/>
     </td>
 <td>
     	1
@@ -1175,10 +1175,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu34/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1187,29 +1187,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1049&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1049&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01165&outline=1049&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01165&outline=1049&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01166<br />PE4101-H</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101H同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Huang, Ching-Wei <br/>
+		黃相瑋 <br/>
     </td>
 <td>
     	1
@@ -1218,10 +1218,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu56/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1230,29 +1230,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1050&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1050&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01166&outline=1050&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01166&outline=1050&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01167<br />PE4101-I</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門之學生，與課號PE2101I同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Che-Chien <br/>
+		張哲千 <br/>
     </td>
 <td>
     	1
@@ -1261,10 +1261,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Fri34/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1273,29 +1273,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1051&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1051&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01167&outline=1051&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01167&outline=1051&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01168<br />PE4101-J</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門者與課號PE2101J同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Jin-Tsung <br/>
+		楊熾增 <br/>
     </td>
 <td>
     	1
@@ -1304,10 +1304,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Fri56/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1316,29 +1316,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1052&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1052&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01168&outline=1052&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01168&outline=1052&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01169<br />PE4101-K</td>
-<td>Badminton I
+<td>羽球入門
     
     <br />
-		<span class="engclass">羽球入門</span>
+		<span class="engclass">Badminton I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過羽球入門者與課號PE2101K同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yang, Jin-Tsung <br/>
+		楊熾增 <br/>
     </td>
 <td>
     	1
@@ -1347,10 +1347,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Fri78/YH-YH-2<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1359,29 +1359,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1053&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1053&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01169&outline=1053&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01169&outline=1053&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01170<br />PE4121-A</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Yen-Ming <br/>
+		梁衍明 <br/>
     </td>
 <td>
     	1
@@ -1390,10 +1390,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon5/*-網球      *<br/>Mon6/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1402,29 +1402,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1054&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1054&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01170&outline=1054&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01170&outline=1054&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01171<br />PE4121-B</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Huang, Ching-Wei <br/>
+		黃相瑋 <br/>
     </td>
 <td>
     	1
@@ -1433,10 +1433,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon7/*-網球      *<br/>Mon8/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1445,29 +1445,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1055&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1055&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01171&outline=1055&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01171&outline=1055&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01172<br />PE4121-C</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121C同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Yen-Ming <br/>
+		梁衍明 <br/>
     </td>
 <td>
     	1
@@ -1476,10 +1476,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue7/*-網球      *<br/>Tue8/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1488,29 +1488,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1056&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1056&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01172&outline=1056&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01172&outline=1056&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01173<br />PE4121-D</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121D同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Yen-Ming <br/>
+		梁衍明 <br/>
     </td>
 <td>
     	1
@@ -1519,10 +1519,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed3/*-網球      *<br/>Wed4/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1531,29 +1531,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1057&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1057&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01173&outline=1057&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01173&outline=1057&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01174<br />PE4121-E</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121E同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Che-Chien <br/>
+		張哲千 <br/>
     </td>
 <td>
     	1
@@ -1562,10 +1562,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed7/*-網球      *<br/>Wed8/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1574,29 +1574,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1058&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1058&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01174&outline=1058&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01174&outline=1058&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01175<br />PE4121-F</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121F同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Che-Chien <br/>
+		張哲千 <br/>
     </td>
 <td>
     	1
@@ -1605,10 +1605,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu5/*-網球      *<br/>Thu6/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1617,29 +1617,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1059&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1059&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01175&outline=1059&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01175&outline=1059&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01176<br />PE4121-G</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121G同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Che-Chien <br/>
+		張哲千 <br/>
     </td>
 <td>
     	1
@@ -1648,10 +1648,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu7/*-網球      *<br/>Thu8/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1660,29 +1660,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1060&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1060&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01176&outline=1060&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01176&outline=1060&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01177<br />PE4121-H</td>
-<td>Tennis I
+<td>網球入門
     
     <br />
-		<span class="engclass">網球入門</span>
+		<span class="engclass">Tennis I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過網球入門之學生，與課號PE2121H同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chang, Che-Chien <br/>
+		張哲千 <br/>
     </td>
 <td>
     	1
@@ -1691,10 +1691,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Fri5/*-網球      *<br/>Fri6/網球-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1703,29 +1703,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1061&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1061&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01177&outline=1061&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01177&outline=1061&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01178<br />PE4151-A</td>
-<td>Golf I
+<td>高爾夫入門
     
     <br />
-		<span class="engclass">高爾夫入門</span>
+		<span class="engclass">Golf I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過高爾夫入門之學生，與課號PE2151A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Yen-Ming <br/>
+		梁衍明 <br/>
     </td>
 <td>
     	1
@@ -1734,10 +1734,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon34/YH-YH-1<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1746,29 +1746,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1062&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1062&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01178&outline=1062&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01178&outline=1062&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01179<br />PE4151-B</td>
-<td>Golf I
+<td>高爾夫入門
     
     <br />
-		<span class="engclass">高爾夫入門</span>
+		<span class="engclass">Golf I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過高爾夫入門之學生，與課號PE2151B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Yen-Ming <br/>
+		梁衍明 <br/>
     </td>
 <td>
     	1
@@ -1777,10 +1777,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue56/YH-YH-1<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1789,29 +1789,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1063&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1063&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01179&outline=1063&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01179&outline=1063&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01180<br />PE4151-C</td>
-<td>Golf I
+<td>高爾夫入門
     
     <br />
-		<span class="engclass">高爾夫入門</span>
+		<span class="engclass">Golf I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過高爾夫入門之學生，與課號PE2151C同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jenn-Dar <br/>
+		陳政達 <br/>
     </td>
 <td>
     	1
@@ -1820,10 +1820,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed56/YH-YH-1<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1832,29 +1832,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1064&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1064&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01180&outline=1064&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01180&outline=1064&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01181<br />PE4151-D</td>
-<td>Golf I
+<td>高爾夫入門
     
     <br />
-		<span class="engclass">高爾夫入門</span>
+		<span class="engclass">Golf I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過高爾夫入門之學生，與課號PE2151D同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liang, Yen-Ming <br/>
+		梁衍明 <br/>
     </td>
 <td>
     	1
@@ -1863,10 +1863,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu34/YH-YH-1<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1875,29 +1875,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1065&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1065&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01181&outline=1065&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01181&outline=1065&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01182<br />PE4151-E</td>
-<td>Golf I
+<td>高爾夫入門
     
     <br />
-		<span class="engclass">高爾夫入門</span>
+		<span class="engclass">Golf I</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過高爾夫入門之學生，與課號PE2151E同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Chen, Jenn-Dar <br/>
+		陳政達 <br/>
     </td>
 <td>
     	1
@@ -1906,10 +1906,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Fri34/YH-YH-1<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1918,29 +1918,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1066&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1066&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01182&outline=1066&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01182&outline=1066&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01183<br />PE4161-*</td>
-<td>Bowling
+<td>保齡球概論
     
     <br />
-		<span class="engclass">保齡球概論</span>
+		<span class="engclass">Bowling</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過保齡球概論者，與課號PE2161同班授課,選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yu, Hung-Chun <br/>
+		余宏群 <br/>
     </td>
 <td>
     	1
@@ -1949,10 +1949,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue5/*-田徑      *<br/>Tue6/田徑-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -1961,29 +1961,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1067&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1067&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01183&outline=1067&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01183&outline=1067&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01184<br />PE4171-*</td>
-<td>Swimming
+<td>游泳概論
     
     <br />
-		<span class="engclass">游泳概論</span>
+		<span class="engclass">Swimming</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過游泳概論者與課號PE2171同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Cheng, Kuei-Chung <br/>
+		鄭貴中 <br/>
     </td>
 <td>
     	1
@@ -1992,10 +1992,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon7/*-室內      *<br/>Mon8/室內-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2004,29 +2004,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1068&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1068&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01184&outline=1068&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01184&outline=1068&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01185<br />PE4181-A</td>
-<td>Yoga
+<td>瑜珈術
     
     <br />
-		<span class="engclass">瑜珈術</span>
+		<span class="engclass">Yoga</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過瑜珈術之學生，與課號PE2181A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Fong <br/>
+		沈淑鳳 <br/>
     </td>
 <td>
     	1
@@ -2035,10 +2035,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon1/*-韻律      *<br/>Mon2/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2047,29 +2047,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1069&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1069&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01185&outline=1069&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01185&outline=1069&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01186<br />PE4181-B</td>
-<td>Yoga
+<td>瑜珈術
     
     <br />
-		<span class="engclass">瑜珈術</span>
+		<span class="engclass">Yoga</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過瑜珈術之學生，與課號PE2181B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Fong <br/>
+		沈淑鳳 <br/>
     </td>
 <td>
     	1
@@ -2078,10 +2078,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon3/*-韻律      *<br/>Mon4/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2090,29 +2090,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1070&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1070&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01186&outline=1070&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01186&outline=1070&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01187<br />PE4181-C</td>
-<td>Yoga
+<td>瑜珈術
     
     <br />
-		<span class="engclass">瑜珈術</span>
+		<span class="engclass">Yoga</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過瑜珈術之學生，與課號PE2181C同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Fong <br/>
+		沈淑鳳 <br/>
     </td>
 <td>
     	1
@@ -2121,10 +2121,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue5/*-韻律      *<br/>Tue6/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2133,29 +2133,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1071&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1071&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01187&outline=1071&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01187&outline=1071&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01188<br />PE4181-D</td>
-<td>Yoga
+<td>瑜珈術
     
     <br />
-		<span class="engclass">瑜珈術</span>
+		<span class="engclass">Yoga</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過瑜珈術之學生，與課號PE2181D同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Fong <br/>
+		沈淑鳳 <br/>
     </td>
 <td>
     	1
@@ -2164,10 +2164,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue7/*-韻律      *<br/>Tue8/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2176,29 +2176,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1072&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1072&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01188&outline=1072&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01188&outline=1072&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01189<br />PE4181-E</td>
-<td>Yoga
+<td>瑜珈術
     
     <br />
-		<span class="engclass">瑜珈術</span>
+		<span class="engclass">Yoga</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過瑜珈術之學生，與課號PE2181E同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Fong <br/>
+		沈淑鳳 <br/>
     </td>
 <td>
     	1
@@ -2207,10 +2207,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed1/*-韻律      *<br/>Wed2/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2219,29 +2219,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1073&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1073&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01189&outline=1073&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01189&outline=1073&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01190<br />PE4181-F</td>
-<td>Yoga
+<td>瑜珈術
     
     <br />
-		<span class="engclass">瑜珈術</span>
+		<span class="engclass">Yoga</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過瑜珈術者，與課號PE2181F同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Fong <br/>
+		沈淑鳳 <br/>
     </td>
 <td>
     	1
@@ -2250,10 +2250,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu1/*-韻律      *<br/>Thu2/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2262,29 +2262,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1074&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1074&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01190&outline=1074&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01190&outline=1074&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01191<br />PE4211-*</td>
-<td>Aerobic Dance
+<td>有氧舞蹈
     
     <br />
-		<span class="engclass">有氧舞蹈</span>
+		<span class="engclass">Aerobic Dance</span>
         
         <span class="notice"><br />請著乾淨鞋子入場，限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過有氧舞蹈之學生，與課號PE2211*同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Chen <br/>
+		沈淑貞 <br/>
     </td>
 <td>
     	1
@@ -2293,10 +2293,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Tue1/*-韻律      *<br/>Tue2/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2305,29 +2305,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1075&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1075&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01191&outline=1075&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01191&outline=1075&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01192<br />PE4221-A</td>
-<td>Jazz
+<td>爵士舞
     
     <br />
-		<span class="engclass">爵士舞</span>
+		<span class="engclass">Jazz</span>
         
         <span class="notice"><br />請著乾淨鞋子入場，限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過爵士舞之學生，與課號PE2221A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Chen <br/>
+		沈淑貞 <br/>
     </td>
 <td>
     	1
@@ -2336,10 +2336,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Mon5/*-韻律      *<br/>Mon6/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2348,29 +2348,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1076&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1076&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01192&outline=1076&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01192&outline=1076&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01193<br />PE4221-B</td>
-<td>Jazz
+<td>爵士舞
     
     <br />
-		<span class="engclass">爵士舞</span>
+		<span class="engclass">Jazz</span>
         
         <span class="notice"><br />請著乾淨鞋子入場，限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過爵士舞之學生，與課號PE2221B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Chen <br/>
+		沈淑貞 <br/>
     </td>
 <td>
     	1
@@ -2379,10 +2379,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu5/*-韻律      *<br/>Thu6/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2391,29 +2391,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1077&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1077&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01193&outline=1077&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01193&outline=1077&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01194<br />PE4231-A</td>
-<td>Latin Aerobic
+<td>拉丁有氧
     
     <br />
-		<span class="engclass">拉丁有氧</span>
+		<span class="engclass">Latin Aerobic</span>
         
         <span class="notice"><br />請著乾淨鞋子入場，限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過拉丁有氧之學生，與課號PE2231A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Chen <br/>
+		沈淑貞 <br/>
     </td>
 <td>
     	1
@@ -2422,10 +2422,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed5/*-韻律      *<br/>Wed6/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2434,29 +2434,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1078&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1078&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01194&outline=1078&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01194&outline=1078&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01195<br />PE4231-B</td>
-<td>Latin Aerobic
+<td>拉丁有氧
     
     <br />
-		<span class="engclass">拉丁有氧</span>
+		<span class="engclass">Latin Aerobic</span>
         
         <span class="notice"><br />請著乾淨鞋子入場，限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過拉丁有氧之學生，與課號PE2231B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Shen, Shu-Chen <br/>
+		沈淑貞 <br/>
     </td>
 <td>
     	1
@@ -2465,10 +2465,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu3/*-韻律      *<br/>Thu4/韻律-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2477,29 +2477,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1079&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1079&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01195&outline=1079&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01195&outline=1079&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01196<br />PE4241-*</td>
-<td>Judo
+<td>柔道
     
     <br />
-		<span class="engclass">柔道</span>
+		<span class="engclass">Judo</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過柔道之學生，與課號PE2241A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Liou,Jhen-Hua <br/>
+		劉振華 <br/>
     </td>
 <td>
     	1
@@ -2508,10 +2508,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Fri3/*-柔道      *<br/>Fri4/柔道-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2520,29 +2520,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1080&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1080&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01196&outline=1080&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01196&outline=1080&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01197<br />PE4251-A</td>
-<td>Self-Defense
+<td>防身術
     
     <br />
-		<span class="engclass">防身術</span>
+		<span class="engclass">Self-Defense</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過防身術之學生，與課號PE2251A同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yu, Hung-Chun <br/>
+		余宏群 <br/>
     </td>
 <td>
     	1
@@ -2551,10 +2551,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed7/*-柔道      *<br/>Wed8/柔道-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2563,29 +2563,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1081&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1081&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01197&outline=1081&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01197&outline=1081&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="odd">
 <td>01198<br />PE4251-B</td>
-<td>Self-Defense
+<td>防身術
     
     <br />
-		<span class="engclass">防身術</span>
+		<span class="engclass">Self-Defense</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過防身術之學生，與課號PE2251B同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yu, Hung-Chun <br/>
+		余宏群 <br/>
     </td>
 <td>
     	1
@@ -2594,10 +2594,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Thu7/*-柔道      *<br/>Thu8/柔道-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2606,29 +2606,29 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1082&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1082&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01198&outline=1082&semester=1031');">Syllabus</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01198&outline=1082&semester=1031');">課程綱要</a>
     </td></tr>
 <tr class="even">
 <td>01199<br />PE4261-*</td>
-<td>Tai Chi Chuan
+<td>太極拳
     
     <br />
-		<span class="engclass">太極拳</span>
+		<span class="engclass">Tai Chi Chuan</span>
         
         <span class="notice"><br />限修畢兩門大一體育及四門體育必修興趣選課四年級且未修過太極拳之學生，與課號PE2261同班授課。選課異動期間，保留大四選修生每班1名，請至體育室教學組加簽。</span>
         <span class="descript"><br />		
 		
 		
 		
-		[Not for preliminary]
+		[不開放初選]
 		
 		</span>
 	</td>
 <td>
-		Yau, Chen-Yu <br/>
+		姚承義 <br/>
     </td>
 <td>
     	1
@@ -2637,10 +2637,10 @@ Online user: 16&nbsp;|
 		<span class="classtime">Wed1/*-籃        *<br/>Wed2/籃-<br/> </span>
     </td>
 <td>
-    	Elective
+    	選修
     </td>
 <td>
-    	Half
+    	半
     </td>
 <td>
     	
@@ -2649,11 +2649,11 @@ Online user: 16&nbsp;|
     	
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1083&semester=1031');">Assignment Criteria</a>
+    	<a href="javascript:void(0);" onclick="javascript:open_limit('/Course/main/query/byKeywords?limit=1083&semester=1031');">分發條件</a>
     </td>
 <td>
-    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01199&outline=1083&semester=1031');">Syllabus</a>
-    </td></tr></tbody></table><div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1" title="Go to page 2">2</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=3&amp;selectDept=&amp;week=1" title="Go to page 3">3</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=4&amp;selectDept=&amp;week=1" title="Go to page 4">4</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1" title="Go to page 5">5</a>, <strong>6</strong>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1" title="Go to page 7">7</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=8&amp;selectDept=&amp;week=1" title="Go to page 8">8</a>, <a href="/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=9&amp;selectDept=&amp;week=1" title="Go to page 9">9</a><a href=/Course/main/query/byKeywords;jsessionid=4D86F91CD08C7A3A927E10F532A78226?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
+    	<a href="javascript:void(0);" onclick="javascript:open_outline('/Course/main/query/byKeywords?serialNo=01199&outline=1083&semester=1031');">課程綱要</a>
+    </td></tr></tbody></table><div class="pagelinks" align="center"><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1><strong>&laquo;</strong></a><a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=2&amp;selectDept=&amp;week=1" title="Go to page 2">2</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=3&amp;selectDept=&amp;week=1" title="Go to page 3">3</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=4&amp;selectDept=&amp;week=1" title="Go to page 4">4</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=5&amp;selectDept=&amp;week=1" title="Go to page 5">5</a>, <strong>6</strong>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1" title="Go to page 7">7</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=8&amp;selectDept=&amp;week=1" title="Go to page 8">8</a>, <a href="/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=9&amp;selectDept=&amp;week=1" title="Go to page 9">9</a><a href=/Course/main/query/byKeywords?query=%E6%9F%A5%E8%A9%A2&amp;fall_spring=1&amp;keyword=&amp;year=103&amp;day=&amp;d-49489-p=7&amp;selectDept=&amp;week=1><strong>&raquo;</strong></a></div>
 
 
 <br/>
@@ -2671,7 +2671,7 @@ Online user: 16&nbsp;|
 
 <div id="content_footer"></div>
 <div id="footer">
-	<p align="center">Address: No.300, Jhongda Rd., Jhongli City, Taoyuan County 32001, Taiwan (R.O.C.)  TEL:+886-3-4227151 Copyright: National Central University. All Rights Reserved </p>
+	<p align="center">地址: (32001)桃園縣中壢市五權里2鄰中大路300號 電話: 03-4227151 版權所有: 國立中央大學 </p>
 </div>
 </div>	<!-- end of container	-->
 <!-- 遮罩 -->
