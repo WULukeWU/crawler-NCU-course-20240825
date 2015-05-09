@@ -16,28 +16,33 @@ courses = []
 		string = (RestClient.get url).to_s
 		File.open("1031/#{page_number}.html", 'w') {|f| f.write(string)}
 	end
-	
+
 	document = Nokogiri::HTML(string)
 
 	document.css('table#item tbody tr').each do |row|
 		datas = row.css("td")
 
+    append = datas[9] && datas[9].css('a')[0] && datas[9].css('a')[0][:onclick][25..-4]
+    url = "https://course.ncu.edu.tw#{append}"
 
-		#count = 10
+		name = datas[1] && datas[1].text && datas[1].text.strip
+    names = name.split(/\n+/)
+    names.each {|d,i| d.strip!}
+    names.each {|d| names.delete(d) if d.empty? }
+
 		courses << {
 			code: datas[0] && datas[0].text,
-			name: datas[1] && datas[1].text,
-			lecturer: datas[2] && datas[2].text,
-			credits: datas[3] && datas[3].text,
-			classroom_time: datas[4] && datas[4].text,
-			required: datas[5] && datas[5].text,
-			semester: datas[6] && datas[6].text,
-			outline: datas[9] && datas[9].css('a')[0] && datas[9].css('a')[0][:onclick],
+			name: names[1],
+      english_name: names[0],
+			lecturer: datas[2] && datas[2].text && datas[2].text.strip,
+			credits: datas[3] && datas[3].text && datas[3].text.to_i,
+			classroom_time: datas[4] && datas[4].text && datas[4].text.strip,
+			required: datas[5] && datas[5].text && datas[5].text.strip,
+			semester: datas[6] && datas[6].text && datas[6].text.strip,
+			outline: url,
 		}
 
 	end
 end
 
 File.open('courses.json','w'){|file| file.write(JSON.pretty_generate(courses))}
-binding.pry
-puts "asdf"
