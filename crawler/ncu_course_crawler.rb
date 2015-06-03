@@ -87,8 +87,8 @@ class NcuCourseCrawler
           year: @year,
           term: @term,
           code: datas[0] && "#{@year}-#{@term}-#{datas[0].text}",
-          name: names[1],
-          english_name: names[0],
+          name: names[0],
+          english_name: names[1],
           lecturer: datas[2] && datas[2].text && datas[2].text.strip,
           credits: datas[3] && datas[3].text && datas[3].text.to_i,
           required: datas[5] && datas[5].text && datas[5].text.include?('必'),
@@ -149,13 +149,17 @@ class NcuCourseCrawler
   end
 
   def visit_page
-    visit "#{@query_url}?#{URI.encode(
+    r = RestClient.get("#{@query_url}?#{URI.encode(
       {
         "query" => "查詢",
         "fall_spring" => @term,
         "year" => @year-1911,
-        "d-49489-p" => @page_count
-      }.map {|k, v| "#{k}=#{v}"}.join('&'))}"
+        "d-49489-p" => @page_count,
+        "selectDept" => nil,
+        "week" => 1
+      }.map {|k, v| "#{k}=#{v}"}.join('&'))}", accept_language: 'zh-TW')
+
+    @doc = Nokogiri::HTML(r)
   end
 end
 
