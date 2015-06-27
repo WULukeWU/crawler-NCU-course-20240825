@@ -1,11 +1,12 @@
 require 'crawler_rocks'
 require 'pry'
 require 'json'
-require 'capybara'
-require 'capybara/poltergeist'
+
+require 'thread'
+require 'thwait'
 
 class NcuCourseCrawler
-  include Capybara::DSL
+
   DAYS = {
     "Mon" => 1,
     "Tue" => 2,
@@ -51,14 +52,63 @@ class NcuCourseCrawler
     @update_progress_proc = update_progress
     @after_each_proc = after_each
 
-    Capybara.javascript_driver = :poltergeist
-    Capybara.current_driver = :poltergeist
-
   end
 
   def courses
-    @courses = []
+    @courses = {}
+    @get_datas = []
 
+    r = RestClient.get "https://course.ncu.edu.tw/Course/main/query/byClass", accept_language: 'zh-TW'
+    doc = Nokogiri::HTML(r.to_s)
+
+    doc.xpath('//td[@valign="top"]/table/tr[2]/td/ul/li').each do |list|
+      dep_n = list.xpath('a').text.match(/(.+?)\s*\((\d+)\)/)[1]
+      # deptdeptI0I8I0 discard dept from begining
+      dep_c = list.xpath('ul/@id').to_s.match(/(?<=deptdept).+/)[0].delete('I')
+      list.xpath('ul/li/a').each do |a|
+        m = a.text.match(/(.+?)\s*\((\d+)\)/)
+        grp_c = a[:href].match(/(?<=ZcofgI).+/)[0]
+        @get_datas << {
+          dep_n: dep_n,
+          dep_c: dep_c,
+          grp_n: m[1],
+          grp_c: grp_c,
+          amount: m[2].to_i,
+          url: URI.join(@query_url, a[:href]).to_s
+        }
+      end
+    end
+
+    @threads = []
+    @get_datas.each do |get_data|
+      department = "#{get_data[:dep_n]}#{get_data[:grp_n]}"
+      department_code = "#{get_data[:dep_c]}-#{get_data[:grp_c]}"
+
+      page_count = get_data[:amount] / 50 + 1
+      print "#{department}\n"
+
+      (1..page_count).each do |i|
+        sleep(1) until (
+          @threads.delete_if { |t| !t.status };  # remove dead (ended) threads
+          @threads.count < (ENV['MAX_THREADS'] || 20)
+        )
+        @threads << Thread.new do
+          print "#{i}|"
+          r = RestClient.get( get_data[:url] + "&d-49489-p=#{i}", accept_language: 'zh-TW' )
+          doc = Nokogiri::HTML(r)
+          doc.css('table#item tbody tr').each do |row|
+            parse_row(row, department_code, department)
+          end
+        end # end thread
+      end
+    end
+    ThreadsWait.all_waits(*@threads)
+
+    @courses.values
+  end
+
+  # deprecated
+  def parse_by_capybara
     visit "#{@query_url}?#{URI.encode({
       "query" => "查詢",
       "fall_spring" => @term,
@@ -100,8 +150,6 @@ class NcuCourseCrawler
         end
       end
     end
-
-    @courses
   end
 
   def parse_row row, dep_code, dep
@@ -109,6 +157,10 @@ class NcuCourseCrawler
 
     _url = datas[9] && datas[9].css('a')[0] && datas[9].css('a')[0][:onclick][25..-4]
     url = "https://course.ncu.edu.tw#{_url}"
+
+    year_term = url.match(/(?<=semester=).+/).to_s
+    year = year_term[0..-2].to_i + 1911
+    term = year_term[-1].to_i
 
     name = datas[1] && datas[1].text && datas[1].text.strip
     names = name.split(/\n+/)
@@ -133,11 +185,12 @@ class NcuCourseCrawler
     end
 
     general_code = datas[0] && datas[0].text
+    code = "#{@year}-#{@term}-#{general_code}-#{dep_code.to_s}"
 
     course = {
-      year: @year,
-      term: @term,
-      code: "#{@year}-#{@term}-#{general_code}",
+      year: year,
+      term: term,
+      code: code,
       general_code: general_code,
       department_code: dep_code.to_s,
       department: dep,
@@ -177,7 +230,7 @@ class NcuCourseCrawler
       location_9: course_locations[8],
     }
     @after_each_proc.call(course: course) if @after_each_proc
-    @courses << course
+    @courses[code] = course
   end
 
   def current_year
@@ -194,5 +247,5 @@ class NcuCourseCrawler
 end
 
 
-# cc = NcuCourseCrawler.new(year: 2014, term: 1)
-# File.write('ncu_courses.json', JSON.pretty_generate(cc.courses))
+cc = NcuCourseCrawler.new(year: 2015, term: 1)
+File.write('ncu_courses.json', JSON.pretty_generate(cc.courses))
