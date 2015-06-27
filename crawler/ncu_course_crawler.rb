@@ -14,6 +14,13 @@ class NcuCourseCrawler
     "Fri" => 5,
     "Sat" => 6,
     "Sun" => 7,
+    "一" => 1,
+    "二" => 2,
+    "三" => 3,
+    "四" => 4,
+    "五" => 5,
+    "六" => 6,
+    "日" => 7,
   }
 
   PERIODS = {
@@ -115,7 +122,7 @@ class NcuCourseCrawler
     course_locations = []
     if times
       times.each do |time|
-        time.match(/(?<d>#{DAYS.keys.join('|')})(?<p>\d+)\/(?<loc>.+)/) do |m|
+        time.match(/(?<d>(#{DAYS.keys.join('|')}))(?<p>\d+)\/(?<loc>.+)/) do |m|
           m[:p].split("").each do |period|
             course_days << DAYS[m[:d]]
             course_periods << PERIODS[period]
