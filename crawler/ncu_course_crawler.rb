@@ -94,7 +94,6 @@ class NcuCourseCrawler
       end
     end
 
-    File.write('courses.json', JSON.pretty_generate(@courses))
     @courses
   end
 
@@ -189,4 +188,4 @@ end
 
 
 # cc = NcuCourseCrawler.new(year: 2014, term: 1)
-# cc.courses
+# File.write('ncu_courses.json', JSON.pretty_generate(cc.courses))
