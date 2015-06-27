@@ -6,3 +6,5 @@ gem 'rest-client'
 gem 'crawler_rocks'
 gem 'capybara'
 gem 'poltergeist'
+
+gem 'web_task_runner'

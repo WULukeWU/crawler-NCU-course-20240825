@@ -128,7 +128,7 @@ class NcuCourseCrawler
 
     general_code = datas[0] && datas[0].text
 
-    @courses << {
+    course = {
       year: @year,
       term: @term,
       code: "#{@year}-#{@term}-#{general_code}",
@@ -170,6 +170,8 @@ class NcuCourseCrawler
       location_8: course_locations[7],
       location_9: course_locations[8],
     }
+    @after_each_proc.call(course: course) if @after_each_proc
+    @courses << course
   end
 
   def current_year
@@ -186,5 +188,5 @@ class NcuCourseCrawler
 end
 
 
-cc = NcuCourseCrawler.new(year: 2014, term: 1)
-cc.courses
+# cc = NcuCourseCrawler.new(year: 2014, term: 1)
+# cc.courses
