@@ -139,7 +139,7 @@ class NcuCourseCrawler
       term: @term,
       code: "#{@year}-#{@term}-#{general_code}",
       general_code: general_code,
-      department_code: dep_code,
+      department_code: dep_code.to_s,
       department: dep,
       name: names[0],
       english_name: names[1],
