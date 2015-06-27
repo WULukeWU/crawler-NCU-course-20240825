@@ -126,11 +126,13 @@ class NcuCourseCrawler
       end
     end
 
+    general_code = datas[0] && datas[0].text
 
     @courses << {
       year: @year,
       term: @term,
-      code: datas[0] && "#{@year}-#{@term}-#{datas[0].text}",
+      code: "#{@year}-#{@term}-#{general_code}",
+      general_code: general_code,
       department_code: dep_code,
       department: dep,
       name: names[0],
@@ -139,7 +141,7 @@ class NcuCourseCrawler
       credits: datas[3] && datas[3].text && datas[3].text.to_i,
       required: datas[5] && datas[5].text && datas[5].text.include?('必'),
       # semester: datas[6] && datas[6].text && datas[6].text.strip,
-      outline: url,
+      url: url,
       day_1: course_days[0],
       day_2: course_days[1],
       day_3: course_days[2],
