@@ -185,7 +185,7 @@ class NcuCourseCrawler
     end
 
     general_code = datas[0] && datas[0].text
-    code = "#{@year}-#{@term}-#{general_code}-#{dep_code.to_s}"
+    code = "#{year}-#{term}-#{general_code}-#{dep_code.to_s}"
 
     course = {
       year: year,
