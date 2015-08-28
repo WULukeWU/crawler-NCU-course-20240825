@@ -247,5 +247,5 @@ class NcuCourseCrawler
 end
 
 
-cc = NcuCourseCrawler.new(year: 2015, term: 1)
-File.write('ncu_courses.json', JSON.pretty_generate(cc.courses))
+# cc = NcuCourseCrawler.new(year: 2015, term: 1)
+# File.write('1041_ncu_courses.json', JSON.pretty_generate(cc.courses))
