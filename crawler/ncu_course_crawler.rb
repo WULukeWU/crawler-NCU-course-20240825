@@ -174,7 +174,7 @@ class NcuCourseCrawler
     course_locations = []
     if times
       times.each do |time|
-        time.match(/(?<d>(#{DAYS.keys.join('|')}))(?<p>\d+)\/(?<loc>.+)/) do |m|
+        time.match(/(?<d>(#{DAYS.keys.join('|')}))(?<p>[#{PERIODS.keys.join}]+)\/(?<loc>.+)/) do |m|
           m[:p].split("").each do |period|
             course_days << DAYS[m[:d]]
             course_periods << PERIODS[period]
